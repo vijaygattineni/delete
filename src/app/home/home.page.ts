@@ -1,12 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { present } from '@ionic/core/dist/types/utils/overlays';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
 
-  constructor() {}
+  tabConfig: any;
+  selectedTab: string;
 
+  constructor() { }
+
+  onTabSelect(selectedObj: any) {
+    this.selectedTab = selectedObj.name;
+  }
+
+  ngOnInit() {
+    // Initalize tabs
+    this.tabConfig = [
+      { title: 'Dashboard', name: 'dashboard', isActive: true },
+      { title: 'Risk Monitor', name: 'risk_monitor', isActive: false },
+      { title: 'Pressure Profile', name: 'pressure_profile', isActive: false },
+      { title: 'Assesment', name: 'assesment', isActive: false }
+    ];
+    this.selectedTab = 'dashboard';
+  }
 }
