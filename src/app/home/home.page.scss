@@ -2,3 +2,29 @@
   max-height: 35vh;
   overflow: hidden;
 }
+
+.dashboard-body {
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  li {
+    font-size: 14px;
+    float: left;
+  }
+
+  li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+  }
+
+  .bold-text {
+    font-size: bold;
+  }
+}
