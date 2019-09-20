@@ -1,9 +1,95 @@
 .create-profile-heading-box {
-    padding-left: 60px;
-    padding-right: 60px;
-    border-bottom: solid 1px #808080;
-    color: #808080;
-    .create-profile-heading {
-        font-size: 18px;
+  padding-left: 60px;
+  padding-right: 60px;
+  border-bottom: 1px #808080;
+  color: #808080;
+  .create-profile-heading {
+    font-size: 18px;
+  }
+}
+.patientprofiletitle {
+  margin-left: 13%;
+}
+.patientprofile {
+  margin-left: 13%;
+  padding: 1.5% 4% 1% 4%;
+  border: 1px solid #808080;
+  width: 74%;
+  font-size: 12px;
+
+  .label {
+    min-width: 100px;
+    display: inline-block;
+  }
+  .label1 {
+    min-width: 100px;
+    display: inline-block;
+  }
+  .label2 {
+    min-width: 100px;
+    display: inline-block;
+  }
+  .input {
+    margin-right: 27%;
+  }
+}
+.riskassessmenttitle {
+  margin-left: 13%;
+  margin-top: 2%;
+}
+.scale {
+  float: right;
+  margin-right: 14%;
+  margin-top: 2%;
+  font-size: 12px;
+}
+.riskassessment {
+  margin-left: 13%;
+  padding: 1.5% 4% 1% 4%;
+  border: 1px solid #808080;
+  width: 74%;
+  font-size: 12px;
+
+  .label {
+    min-width: 100px;
+    display: inline-block;
+  }
+  .label1 {
+    min-width: 100px;
+    display: inline-block;
+  }
+  .label2 {
+    min-width: 100px;
+    display: inline-block;
+  }
+  .input {
+    margin-right: 27%;
+    min-width: 140px;
+  }
+}
+.otherdetailstitle {
+  margin-left: 13%;
+  margin-top: 2%;
+}
+.otherdetails {
+  margin-left: 13%;
+  padding: 1.5% 4% 1% 4%;
+  border: 1px solid #808080;
+  width: 74%;
+  font-size: 12px;
+  .table {
+    width: 100%;
+    td {
+      padding:6px 36px 6px 1px;
     }
+  }
+  .input {
+    margin-right: 15%;
+  }
+  .box {
+    margin-right: 1%;
+  }
+  .row1 {
+    margin-top: 2%;
+  }
 }
