@@ -7,6 +7,9 @@ import { RouterModule } from '@angular/router';
 import { HomePage } from './home.page';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { PressureProfileComponent } from './pressure-profile/pressure-profile.component';
+import { RiskMonitorComponent } from './risk-monitor/risk-monitor.component';
+import { AssesmentComponent } from './assesment/assesment.component';
 
 @NgModule({
   imports: [
@@ -20,6 +23,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
       }
     ])
   ],
-  declarations: [HomePage, DashboardComponent]
+  declarations: [HomePage, DashboardComponent, PressureProfileComponent, RiskMonitorComponent, AssesmentComponent]
 })
 export class HomePageModule {}
