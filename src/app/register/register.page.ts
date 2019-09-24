@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RegisterService } from './register.service';
 import { Key } from 'protractor';
-import { registerData } from './register';
+import { RegisterData } from './register';
 
 @Component({
   selector: 'app-register',
@@ -9,61 +9,114 @@ import { registerData } from './register';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-
+ data: RegisterData;
   constructor(private registerService: RegisterService) { }
-  sensory_perceptions = ['Completly Limited', 'Very Limited', 'Slightly Limited', 'Not Limited'];
-  mobilitys = ['Completely Immobile', 'Very Limited', 'Slightly Limited', 'Not Limited'];
-  moistures = ['constantly Moist', 'Very Moist', 'Occasionally Moist', 'Rarely Moist'];
-  nutritions = ['Very Poor', 'Probably Inadequate', 'Adequate', 'Excellent'];
-  activities = ['Bedfast', 'Chairfast', 'Walks Occasionally', 'Walks Frequently'];
-  frictions = ['Problem', 'Potential Problem', 'No Apparent Problem'];
-  data = {
-    "patient_profile": {
-      "name": '',
-      "age": '',
-      "id": '',
-      "gender": '',
-      "height": '',
-      "weight": ''
-    },
-    "risk_assessment": {
-      "sensory_perception": '',
-      "mobility": '',
-      "moisture": '',
-      "nutrition": '',
-      "activity": '',
-      "friction_shear": ''
-    },
-    "other_factors": {
-      "previous_pressure_injury": true,
-      "diabetes": true,
-      "smoker": true,
-      "cardiovascular_disease": true,
-      "anti_coagulants": false,
-      "kidney_disease": true,
-      "respiratory_condition": false,
-      "urogenital_condition": true,
-      "sepsis": true,
-      "pneumonia": false,
-      "anemia_or_haemoglobinopathies": false,
-      "bone_infections": true,
-      "paralysis": true,
-      "muscular_dystrophy_myopathies": true,
-      "hip_or_knee_surgery": true
-    }
-  };
+  sensory_perceptions = [];
+  mobilitys = [];
+  moistures = [];
+  nutritions = [];
+  activities = [];
+  frictions = [];
+
+  
+  
+  allUser : any;
+  error : any;
+  registerInfo = {
+
+  }
   checkboxData: any;
   ngOnInit() {
-    this.checkboxData = Object.keys(this.data.other_factors);
-    console.log("checkbox", this.checkboxData[0]);
-  }
-  getdata(userdata) {
-    this.registerService.registerUsers(userdata);
+    this.data = {
+      patient_profile: {
+          name: 'har',
+          age: 24,
+          gender: 'M',
+          height: 0,
+          weight: 0,
+      },
+      risk_assessment: {
+          sensory_perception: '',
+          mobility: '',
+          moisture: '',
+          nutrition: '',
+          activity: '',
+          friction_shear: '',
+      },
+      other_factors: {
+          previous_pressure_injury: false,
+          diabetes: false,
+          smoker: false,
+          cardiovascular_disease: false,
+          anti_coagulants: false,
+          kidney_disease: false,
+          respiratory_condition: false,
+          urogenital_condition: false,
+          sepsis: false,
+          pneumonia: false,
+          anemia_or_haemoglobinopathies: false,
+          bone_infections: false,
+          paralysis: false,
+          muscular_dystrophy_myopathies: false,
+          hip_or_knee_surgery: false,
+      }
   };
+     this.checkboxData = Object.keys(this.data.other_factors);
+    // console.log(checkbox, this.checkboxData[0]);
+    this.getRiskAssessmentData('sensory');
+    this.getRiskAssessmentData('moisture');
+    this.getRiskAssessmentData('activity');
+    this.getRiskAssessmentData('mobility');
+    this.getRiskAssessmentData('nutrition');
+    this.getRiskAssessmentData('friction');
+    
+  }
+  getdata() {
+    this.registerService.registerUsers(this.data).subscribe((result) => {
+      this.allUser = result;
+     // console.log('post data', this.allUser);
+      if(result) {
+        window.alert('Created Successfully');
+      }
+    })
+    if(!this.allUser) window.alert('enter correct details');
+  };
+  
 
-  submit(data: any) {
-    console.log(data);
-    this.getdata(data);
+  getUserInfo() {
+    this.registerService.getUserInfo().subscribe((result) => {
+      this.allUser = result;
+     // console.log(this.allUser);
+    })
+  }
+
+  getRiskAssessmentData (filter: string) {
+    this.registerService.riskAssessmentData(filter).subscribe((result) => {
+      if(filter === 'sensory' && result){
+        this.sensory_perceptions.push(result);
+      }
+      else if(filter ==='moisture' && result){
+        this.moistures.push(result);
+      }
+      else if(filter ==='activity' && result){
+        this.activities.push(result);
+      }
+      else if(filter ==='mobility' && result){
+        this.mobilitys.push(result);
+      }
+      else if(filter ==='nutrition' && result){
+        this.nutritions.push(result);
+      }
+      else {
+        this.frictions.push(result);
+      }
+    }) 
+  }
+
+  submit() {
+    //this.getUserInfo();
+    this.getdata();
+    //console.log("interface data", this.data.patient_profile);
   }
 }
 

@@ -7,8 +7,13 @@
     font-size: 18px;
   }
 }
+ion-content{
+  --background: #000000;
+}
+
 .patientprofiletitle {
   margin-left: 13%;
+  color:#FFFFFF;
 }
 .patientprofile {
   margin-left: 13%;
@@ -18,16 +23,9 @@
   font-size: 12px;
 
   .label {
-    min-width: 100px;
+    min-width: 8vw;
     display: inline-block;
-  }
-  .label1 {
-    min-width: 100px;
-    display: inline-block;
-  }
-  .label2 {
-    min-width: 100px;
-    display: inline-block;
+    color: #FFFFFF;
   }
   .input {
     margin-right: 27%;
@@ -36,6 +34,7 @@
 .riskassessmenttitle {
   margin-left: 13%;
   margin-top: 2%;
+  color:#FFFFFF;
 }
 .scale {
   float: right;
@@ -51,16 +50,9 @@
   font-size: 12px;
 
   .label {
-    min-width: 100px;
+    min-width: 8vw;
     display: inline-block;
-  }
-  .label1 {
-    min-width: 100px;
-    display: inline-block;
-  }
-  .label2 {
-    min-width: 100px;
-    display: inline-block;
+    color:#FFFFFF;
   }
   .input {
     margin-right: 27%;
@@ -70,6 +62,7 @@
 .otherdetailstitle {
   margin-left: 13%;
   margin-top: 2%;
+  color:#FFFFFF;
 }
 .otherdetails {
   margin-left: 13%;
@@ -77,6 +70,7 @@
   border: 1px solid #808080;
   width: 74%;
   font-size: 12px;
+  margin-bottom:2%;
   .table {
     width: 100%;
     td {
@@ -85,6 +79,8 @@
   }
   .input {
     margin-right: 15%;
+    min-width: 20%;
+    color: #FFFFFF;
   }
   .box {
     margin-right: 1%;

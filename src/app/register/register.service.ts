@@ -6,15 +6,23 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class RegisterService {
-  api: string = "";
+  userInfoapi = 'http://cea39217.ngrok.io/smart_sheet/api/patients';
+  riskAssessmetApi = 'http://cea39217.ngrok.io/smart_sheet/api/master-data?type=';
   constructor(private httpClient: HttpClient) { }
 
   public registerUsers(obj) {
-    return this.httpClient.post(this.api, obj);
+    return this.httpClient.post(this.userInfoapi, obj);
   }
 
-  public getAllData() {
-    return this.httpClient.get(this.api);
+  public getUserInfo() {
+    return this.httpClient.get(this.userInfoapi);
+  }
+
+  //dropdown
+
+  public riskAssessmentData(filter) {
+    let filterApi = this.riskAssessmetApi + filter;
+    return this.httpClient.get(filterApi);
   }
 
 }
