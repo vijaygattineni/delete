@@ -1,4 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { webSocket } from 'rxjs/webSocket';
+
+export class Message {
+  constructor(
+    public sender: string,
+    public content: string,
+    public isBroadcast = false,
+  ) { }
+}
 
 @Component({
   selector: 'app-list',
@@ -6,34 +15,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
-  private selectedItem: any;
-  private icons = [
-    'flask',
-    'wifi',
-    'beer',
-    'football',
-    'basketball',
-    'paper-plane',
-    'american-football',
-    'boat',
-    'bluetooth',
-    'build'
-  ];
   public items: Array<{ title: string; note: string; icon: string }> = [];
+  public message: any;
+
   constructor() {
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+    const subject = webSocket('ws://192.168.238.201:3000');
+
+    subject.subscribe(
+      msg => {
+        console.log('message received: ' + msg);
+        debugger;
+        this.message = msg;
+      }, // Called whenever there is a message from the server.
+      err => {
+        console.log('error', err);
+      }, // Called if at any point WebSocket API signals some kind of error.
+      () => {
+        debugger;
+        console.log('complete');
+      }// Called when connection is closed (for whatever reason).
+    );
+
+    subject.next({ message: 'hello world' });
   }
 
   ngOnInit() {
   }
-  // add back when alpha.4 is out
-  // navigate(item) {
-  //   this.router.navigate(['/list', JSON.stringify(item)]);
-  // }
+
 }

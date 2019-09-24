@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { present } from '@ionic/core/dist/types/utils/overlays';
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
