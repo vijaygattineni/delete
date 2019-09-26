@@ -6,8 +6,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class RegisterService {
-  userInfoapi = 'http://cea39217.ngrok.io/smart_sheet/api/patients';
-  riskAssessmetApi = 'http://cea39217.ngrok.io/smart_sheet/api/master-data?type=';
+  userInfoapi = 'http://725ee122.ngrok.io/smart_sheet/api/patients';
+  riskAssessmetApi = 'http://725ee122.ngrok.io/smart_sheet/api/master-data?type=';
   constructor(private httpClient: HttpClient) { }
 
   public registerUsers(obj) {

@@ -1,0 +1,57 @@
+.riskmonitor{
+.first {
+  margin-top: 5%;
+  border-radius: 3px;
+  background-color: rgb(29, 30, 31);
+  box-shadow: 0 3px 10px 0 #203e74;
+  .riskmonitortitle {
+    color: #ffffff;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 100;
+    line-height: 28px;
+    padding: 20px;
+  }
+  .subtitle {
+    font-size: 18px;
+  }
+  .second {
+    background-color: rgb(45, 48, 51);
+    color: white;
+  }
+  .assessment_level {
+    background-color: black;
+    margin-bottom: 1%;
+    height: 57px;
+    color: white;
+    h6 {
+      margin-top: 1%;
+    }
+    .lefttext {
+      margin-top: -2%;
+      font-size: 11px;
+    }
+    .righttext {
+      margin-top: 5%;
+      font-size: 14px;
+    }
+  }
+}
+.first_box {
+    margin-top: 5%;
+    border-radius: 3px;
+    background-color: rgb(29, 30, 31);
+    box-shadow: 0 3px 10px 0 #203e74;
+    .riskmonitortitle {
+      color: #ffffff;
+      font-family: Roboto;
+      font-size: 20px;
+      font-weight: 100;
+      line-height: 28px;
+      padding: 20px;
+    }
+/*     .second_box {
+        background-color: rgb(45, 48, 51);
+      } */
+}
+}

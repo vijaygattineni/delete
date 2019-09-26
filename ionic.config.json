@@ -1,5 +1,7 @@
 {
   "name": "lenexa_ionic",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

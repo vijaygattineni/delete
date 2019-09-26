@@ -29,9 +29,9 @@ export class RegisterPage implements OnInit {
   ngOnInit() {
     this.data = {
       patient_profile: {
-          name: 'har',
+          name: 'hari',
           age: 24,
-          gender: 'M',
+          gender: 'F',
           height: 0,
           weight: 0,
       },

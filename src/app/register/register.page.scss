@@ -18,9 +18,9 @@ ion-content{
 .patientprofile {
   margin-left: 13%;
   padding: 1.5% 4% 1% 4%;
-  border: 1px solid #808080;
   width: 74%;
   font-size: 12px;
+  background-color: rgb(29, 30, 31);
 
   .label {
     min-width: 8vw;
@@ -29,6 +29,7 @@ ion-content{
   }
   .input {
     margin-right: 27%;
+    height:10%;
   }
 }
 .riskassessmenttitle {
@@ -45,9 +46,9 @@ ion-content{
 .riskassessment {
   margin-left: 13%;
   padding: 1.5% 4% 1% 4%;
-  border: 1px solid #808080;
   width: 74%;
   font-size: 12px;
+  background-color:  rgb(29, 30, 31);
 
   .label {
     min-width: 8vw;
@@ -67,10 +68,10 @@ ion-content{
 .otherdetails {
   margin-left: 13%;
   padding: 1.5% 4% 1% 4%;
-  border: 1px solid #808080;
   width: 74%;
   font-size: 12px;
   margin-bottom:2%;
+  background-color:  rgb(29, 30, 31);
   .table {
     width: 100%;
     td {
