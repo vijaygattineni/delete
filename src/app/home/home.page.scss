@@ -12,16 +12,23 @@
   }
 
   li {
-    font-size: 14px;
+    font-size: 18px;
     float: left;
   }
 
-  li a {
+  li span {
     display: block;
-    color: black;
+    color: white;
     text-align: center;
     padding: 10px;
     text-decoration: none;
+    background-color: #0C3555;
+  }
+
+
+  li .active {
+    background-color: #13507F;
+    font-weight: bold;
   }
 
   .bold-text {

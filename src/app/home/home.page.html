@@ -18,12 +18,11 @@
       <ion-col size='8' class="dashboard-body">
         <ul>
           <li style="width:25%" *ngFor="let config of this.tabConfig"><span
-              (click)="onTabSelect(this.config)">{{this.config.title}}</span></li>
+              (click)="onTabSelect(this.config)" [ngClass]="{'active' : this.selectedTab == this.config.name}">{{this.config.title}}</span></li>
         </ul>
 
         <!-- TAB BODY -->
         <div *ngIf="this.selectedTab === 'dashboard'">
-          Dashboard Component
           <app-dashboard></app-dashboard>
         </div>
         <div *ngIf="this.selectedTab === 'risk_monitor'">
@@ -33,12 +32,7 @@
           <app-pressure-profile></app-pressure-profile>
         </div>
         <div *ngIf="this.selectedTab === 'assesment'">
-<<<<<<< HEAD
-          Assesment Component
-          <app-assessment></app-assessment>
-=======
           <app-assesment></app-assesment>
->>>>>>> 13437e9025c3c7672b665c459427f05b1c2d5d37
         </div>
 
       </ion-col>

@@ -1,3 +1,6 @@
+@import '../../theme/variables.scss'; 
+
+
 .create-profile-heading-box {
   padding-left: 60px;
   padding-right: 60px;
@@ -7,13 +10,10 @@
     font-size: 18px;
   }
 }
-ion-content{
-  --background: #000000;
-}
 
 .patientprofiletitle {
   margin-left: 13%;
-  color:#FFFFFF;
+  color:$lenexa-theme-font;
 }
 .patientprofile {
   margin-left: 13%;
@@ -25,7 +25,7 @@ ion-content{
   .label {
     min-width: 8vw;
     display: inline-block;
-    color: #FFFFFF;
+    color: $lenexa-theme-font;
   }
   .input {
     margin-right: 27%;
@@ -35,7 +35,7 @@ ion-content{
 .riskassessmenttitle {
   margin-left: 13%;
   margin-top: 2%;
-  color:#FFFFFF;
+  color:$lenexa-theme-font;
 }
 .scale {
   float: right;
@@ -53,7 +53,7 @@ ion-content{
   .label {
     min-width: 8vw;
     display: inline-block;
-    color:#FFFFFF;
+    color:$lenexa-theme-font;
   }
   .input {
     margin-right: 27%;
@@ -63,7 +63,7 @@ ion-content{
 .otherdetailstitle {
   margin-left: 13%;
   margin-top: 2%;
-  color:#FFFFFF;
+  color:$lenexa-theme-font;
 }
 .otherdetails {
   margin-left: 13%;
@@ -81,7 +81,7 @@ ion-content{
   .input {
     margin-right: 15%;
     min-width: 20%;
-    color: #FFFFFF;
+    color: $lenexa-theme-font;
   }
   .box {
     margin-right: 1%;

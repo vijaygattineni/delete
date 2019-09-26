@@ -80,7 +80,7 @@
           <option *ngFor="let activity of activities[0]" [value]="activity">{{activity.value}}</option>
         </select>
         <label class="label">Friction/shear</label>
-        <select class="input" name="friction" [(ngModel)]="data.risk_assessment.friction">
+        <select class="input" name="friction" [(ngModel)]="data.risk_assessment.friction_shear">
           <option *ngFor="let friction of frictions[0]" [value]="friction">{{friction.value}}</option>
         </select>
       </div>
