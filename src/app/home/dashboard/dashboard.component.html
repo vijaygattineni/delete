@@ -9,21 +9,21 @@
       <ion-row>
         <ion-col class="lite-black-bg">
           <div class="sub-heading-label">Patient Name</div>
-          <div class="value">Jhon Smith</div>
+          <div class="value">{{this.patientProfile.patient_name}}</div>
           <div class="action-label">View Full Profile</div>
         </ion-col>
         <ion-col>
           <div class="sub-heading-label">Status</div>
-          <div class="value">Occupied</div>
+          <div class="value">{{this.patientProfile.status}}</div>
           <div class="action-label">Stop monitoring</div>
         </ion-col>
         <ion-col>
           <div class="sub-heading-label">Age</div>
-          <div class="value">43</div>
+          <div class="value">{{this.patientProfile.age}}</div>
         </ion-col>
         <ion-col>
           <div class="sub-heading-label">Bed ID</div>
-          <div class="value">001</div>
+          <div class="value">{{this.patientProfile.bed_id}}</div>
         </ion-col>
       </ion-row>
 
@@ -31,9 +31,8 @@
     <ion-col size="2">
       <ion-row>
         <ion-col>
-
-          <div class="sub-heading-label">Hear Rate</div>
-          <div class="xl-value">120</div>
+          <div class="sub-heading-label">Heart Rate</div>
+          <div class="xl-value">{{this.patientProfile.heart_rate}}</div>
         </ion-col>
       </ion-row>
 
@@ -42,7 +41,7 @@
       <ion-row>
         <ion-col>
           <div class="sub-heading-label">Respiratory Rate</div>
-          <div class="xl-value">62</div>
+          <div class="xl-value">{{this.patientProfile.respiratory_rate}}</div>
         </ion-col>
       </ion-row>
     </ion-col>
@@ -58,10 +57,10 @@
       Risk Area
       <ion-row>
         <ion-col size="8" class="high-risk-text">
-          Left Shoulder is at risk Left Shoulder is at riskLeft Shoulder is at riskLeft Shoulder is at risk
+          {{this.risk.risk_area}}
         </ion-col>
         <ion-col size="4">
-          <img src="../../../assets/Risk_Aria.svg">
+          <img [src]="this.risk.risk_area_image">
         </ion-col>
       </ion-row>
     </ion-col>
@@ -73,7 +72,7 @@
       Recomendation
       <ion-row>
         <ion-col size="8" class="recomendation-text">
-          Change position in next one hour.Change position in next one hour. Change position in next one hour.
+          {{this.risk.recommendation}}
         </ion-col>
         <ion-col size="4">
         </ion-col>

@@ -12,11 +12,11 @@ export class PressureProfileComponent implements OnInit {
 
   drawChart() {
 
-    let categories = ['', 'Right Fetus', 'Right Log', 'Left Fetus', 'Supine', 'Prone'];
+    let categories = [ 'Right Fetus', 'Right Log', 'Left Fetus', 'Supine', 'Prone'];
 
-    let dollars = [[0, 0], [75, 209], [50, 190], [100, 179], [140, 156], [138, 209]];
+    let dollars = [[75, 209], [50, 190], [100, 179], [140, 156], [138, 209]];
 
-    let colors = ['transparent', '#0066AE', '#0066AE', '#0066AE', '#0066AE', '#0066AE'];
+    let colors = ['#0066AE', '#0066AE', '#0066AE', '#0066AE', '#0066AE'];
 
     let grid = d3.range(25).map(function (i) {
       return {

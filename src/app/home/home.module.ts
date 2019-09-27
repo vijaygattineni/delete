@@ -11,11 +11,16 @@ import { PressureProfileComponent } from './pressure-profile/pressure-profile.co
 import { AssesmentComponent } from './assesment/assesment.component';
 import { RiskMonitorComponent } from './risk-monitor/risk-monitor.component';
 
+import { NvD3Module } from 'ng2-nvd3';
+import 'd3';
+import 'nvd3';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    NvD3Module,
     RouterModule.forChild([
       {
         path: '',
