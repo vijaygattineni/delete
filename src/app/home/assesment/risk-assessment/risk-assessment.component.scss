@@ -1,0 +1,50 @@
+.riskassessment {
+    margin-left: 13%;
+    padding: 1.5% 4% 1% 4%;
+    width: 82%;
+    font-size: 12px;
+   // background-color:  rgb(29, 30, 31);
+    border:1px solid black;
+  
+    .label {
+      min-width: 8vw;
+      display: inline-block;
+      color:black;
+    }
+    .input {
+      margin-right: 27%;
+      min-width: 140px;
+    }
+  }
+  .otherdetailstitle {
+    margin-left: 13%;
+    margin-top: 2%;
+    color:black;
+  }
+  .otherdetails {
+    margin-left: 13%;
+    padding: 1.5% 4% 1% 4%;
+    width: 82%;
+    font-size: 12px;
+    margin-bottom:2%;
+   // background-color:  rgb(29, 30, 31);
+   border:1px solid black;
+    .table {
+      width: 100%;
+      td {
+        padding:6px 36px 6px 1px;
+      }
+    }
+    .input {
+      margin-right: 15%;
+      min-width: 20%;
+      color: black;
+    }
+    .box {
+      margin-right: 1%;
+    }
+    .row1 {
+      margin-top: 2%;
+    }
+  }
+  

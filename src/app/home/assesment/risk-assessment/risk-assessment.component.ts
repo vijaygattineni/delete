@@ -1,32 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { RegisterService } from './register.service';
-import { Key } from 'protractor';
-import { RegisterData } from './register';
-import { Router } from '@angular/router';
+import { RiskAssessmentService } from './risk-assessment.service';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.page.html',
-  styleUrls: ['./register.page.scss'],
+  selector: 'app-risk-assessment',
+  templateUrl: './risk-assessment.component.html',
+  styleUrls: ['./risk-assessment.component.scss'],
 })
-export class RegisterPage implements OnInit {
-  data: RegisterData;
-  constructor(private registerService: RegisterService, private router: Router) { }
+export class RiskAssessmentComponent implements OnInit {
+  data: any;
+
+  constructor(private riskassessmentService:RiskAssessmentService) { }
   sensory_perceptions = [];
   mobilitys = [];
   moistures = [];
   nutritions = [];
   activities = [];
   frictions = [];
-
-
-
-  allUser: any;
-  error: any;
-  registerInfo = {
-
-  }
-  checkboxData: any;
   ngOnInit() {
     this.data = {
       patient_profile: {
@@ -62,8 +51,6 @@ export class RegisterPage implements OnInit {
         hip_or_knee_surgery: false,
       }
     };
-    this.checkboxData = Object.keys(this.data.other_factors);
-    // console.log(checkbox, this.checkboxData[0]);
     this.getRiskAssessmentData('sensory');
     this.getRiskAssessmentData('moisture');
     this.getRiskAssessmentData('activity');
@@ -72,35 +59,8 @@ export class RegisterPage implements OnInit {
     this.getRiskAssessmentData('friction');
 
   }
-  getdata() {
-
-    this.registerService.registerUsers(this.data).subscribe((result) => {
-      this.allUser = result;
-      // console.log('post data', this.allUser);
-      if (result) {
-        window.alert('Created Successfully');
-        localStorage.setItem('dataSource', this.allUser);
-        this.router.navigate(['home']);
-
-      
-      }
-      else {
-        window.alert('enter correct details');
-      }
-    })
-
-  };
-
-
-  getUserInfo() {
-    this.registerService.getUserInfo().subscribe((result) => {
-      this.allUser = result;
-      // console.log(this.allUser);
-    })
-  }
-
   getRiskAssessmentData(filter: string) {
-    this.registerService.riskAssessmentData(filter).subscribe((result) => {
+    this.riskassessmentService.riskAssessmentData(filter).subscribe((result) => {
       if (filter === 'sensory' && result) {
         this.sensory_perceptions.push(result);
       }
@@ -121,11 +81,4 @@ export class RegisterPage implements OnInit {
       }
     })
   }
-
-  submit() {
-    //this.getUserInfo();
-    this.getdata();
-    //console.log("interface data", this.data.patient_profile);
-  }
 }
-

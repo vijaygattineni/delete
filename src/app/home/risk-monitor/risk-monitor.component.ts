@@ -38,7 +38,7 @@ export class RiskMonitorComponent implements OnInit {
       }]
      */
 
-      this.getRiskmonitorDetails();
+      this.getRiskmonitorDetails('1');
     
     this.options = {
       chart: {
@@ -117,8 +117,8 @@ export class RiskMonitorComponent implements OnInit {
     else if(risk === 'no risk') this.color='green'
     else this.color='yellow';
   }
-  getRiskmonitorDetails() {
-    this.riskmonitorService.getRiskmonitorDetails().subscribe((result) => {
+  getRiskmonitorDetails(id:string) {
+    this.riskmonitorService.getRiskmonitorDetails(id).subscribe((result) => {
       this.riskData = result;
       console.log('riskdata',this.riskData);
     })
