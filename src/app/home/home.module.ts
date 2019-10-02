@@ -14,6 +14,7 @@ import { RiskMonitorComponent } from './risk-monitor/risk-monitor.component';
 import { NvD3Module } from 'ng2-nvd3';
 import 'd3';
 import 'nvd3';
+import { SkinAssessmentComponent } from './assesment/skin-assessment/skin-assessment.component';
 
 @NgModule({
   imports: [
@@ -28,6 +29,6 @@ import 'nvd3';
       }
     ])
   ],
-  declarations: [HomePage, DashboardComponent, PressureProfileComponent, AssesmentComponent, RiskMonitorComponent]
+  declarations: [HomePage, DashboardComponent, PressureProfileComponent, AssesmentComponent, RiskMonitorComponent, SkinAssessmentComponent]
 })
 export class HomePageModule {}

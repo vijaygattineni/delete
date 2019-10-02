@@ -1,43 +1,5 @@
-.riskmonitor{
-.first {
-  margin-top: 5%;
-  border-radius: 3px;
-  background-color: rgb(29, 30, 31);
-  box-shadow: 0 3px 10px 0 #203e74;
-  .riskmonitortitle {
-    color: #ffffff;
-    font-family: Roboto;
-    font-size: 20px;
-    font-weight: 100;
-    line-height: 28px;
-    padding: 20px;
-  }
-  .subtitle {
-    font-size: 18px;
-  }
-  .second {
-    background-color: rgb(45, 48, 51);
-    color: white;
-  }
-  .assessment_level {
-    background-color: black;
-    margin-bottom: 1%;
-    height: 57px;
-    color: white;
-    h6 {
-      margin-top: 1%;
-    }
-    .lefttext {
-      margin-top: -2%;
-      font-size: 11px;
-    }
-    .righttext {
-      margin-top: 5%;
-      font-size: 14px;
-    }
-  }
-}
-.first_box {
+.riskmonitor {
+  .first {
     margin-top: 5%;
     border-radius: 3px;
     background-color: rgb(29, 30, 31);
@@ -50,16 +12,110 @@
       line-height: 28px;
       padding: 20px;
     }
-/*     .second_box {
-        background-color: rgb(45, 48, 51);
-      } */
-}
-.nvd3 .nv-axis line {
-  stroke: darkgray;
-  opacity: 0.5;
-  stroke-dasharray: 5,5;
-}
-.nvd3 text {
-  fill: white;
-}
+    .subtitle {
+      font-size: 18px;
+    }
+    .second {
+      background-color: rgb(45, 48, 51);
+      color: white;
+      .greensquare {
+        height: 9px;
+        width: 9px;
+        border-radius: 0.5px;
+        background-color: #7ae571;
+        margin-top: 14px;
+        margin-right: 6px;
+      }
+      .yellowsquare {
+        height: 9px;
+        width: 9px;
+        border-radius: 0.5px;
+        background-color: orange !important;
+        margin-top: 14px;
+        margin-right: 6px;
+      }
+      .orangesquare {
+        height: 9px;
+        width: 9px;
+        border-radius: 0.5px;
+        background-color: orangered !important;
+        margin-top: 14px;
+        margin-right: 6px;
+      }
+      .redsquare {
+        height: 9px;
+        width: 9px;
+        border-radius: 0.5px;
+        background-color: red;
+        margin-top: 14px;
+        margin-right: 6px;
+      }
+      .label {
+        height: 14px;
+        width: 76px;
+        color: #ffffff;
+        font-family: Roboto;
+        font-size: 12px;
+        font-weight: 100;
+        line-height: 14px;
+      }
+      .yellowsquare {
+        height: 10px;
+        width: 10px;
+        background-color: orangered;
+        font-size: 10px;
+      }
+      .orangesquare {
+        height: 10px;
+        width: 10px;
+        background-color: orange;
+        font-size: 10px;
+      }
+      .redsquare {
+        height: 10px;
+        width: 10px;
+        background-color: red;
+        font-size: 10px;
+      }
+    }
+    .assessment_level {
+      background-color: black;
+      margin-bottom: 1%;
+      height: 57px;
+      color: white;
+      h6 {
+        margin-top: 1%;
+      }
+      .lefttext {
+        margin-top: -2%;
+        font-size: 11px;
+      }
+      .righttext {
+        margin-top: 5%;
+        font-size: 14px;
+      }
+    }
+  }
+  .first_box {
+    margin-top: 5%;
+    border-radius: 3px;
+    background-color: rgb(29, 30, 31);
+    box-shadow: 0 3px 10px 0 #203e74;
+    .riskmonitortitle {
+      color: #ffffff;
+      font-family: Roboto;
+      font-size: 20px;
+      font-weight: 100;
+      line-height: 28px;
+      padding: 20px;
+    }
+  }
+  .nvd3 .nv-axis line {
+    stroke: darkgray;
+    opacity: 0.5;
+    stroke-dasharray: 5, 5;
+  }
+  .nvd3 text {
+    fill: white;
+  }
 }

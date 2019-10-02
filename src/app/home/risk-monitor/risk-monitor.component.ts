@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { RiskMonitorService } from './risk-monitor.service';
+
 declare let d3: any;
 
 @Component({
@@ -11,10 +13,32 @@ export class RiskMonitorComponent implements OnInit {
 
   options;
   data;
-
-  constructor() { }
+  riskData;
+  color:string;
+  risktypeData;
+  constructor(private riskmonitorService: RiskMonitorService) { }
 
   ngOnInit(){
+
+  /* this.riskData= [
+      {
+          'risk_area': 'left shoulder',
+          'risk_level': 'very high risk',
+          'recommondation': 'Offload now'
+      },
+      {
+          'risk_area': 'sacrum',
+          'risk_level': 'At risk',
+          'recommondation': 'Change position'    
+      },
+      {
+          'risk_area': 'left knee',
+          'risk_level': 'no risk',
+          'recommondation': ''
+      }]
+     */
+
+      this.getRiskmonitorDetails();
     
     this.options = {
       chart: {
@@ -87,5 +111,19 @@ export class RiskMonitorComponent implements OnInit {
   ];
   }
 
+  pickColor(risk:string) {
+    if(risk === 'very high risk') this.color='red';
+    else if(risk === 'At risk') this.color='orangered';
+    else if(risk === 'no risk') this.color='green'
+    else this.color='yellow';
+  }
+  getRiskmonitorDetails() {
+    this.riskmonitorService.getRiskmonitorDetails().subscribe((result) => {
+      this.riskData = result;
+      console.log('riskdata',this.riskData);
+    })
+  }
 
+
+  
 }
