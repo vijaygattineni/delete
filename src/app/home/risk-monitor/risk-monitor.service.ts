@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RiskMonitorService {
    // id = '1';
-    riskmonitorapi = 'http://4fc1b1ac.ngrok.io/smart_sheet/api/risk-history?patient=';
+    riskmonitorapi = 'http://b2d272e5.ngrok.io/smart_sheet/api/risk-history?patient=';
     constructor(private httpClient: HttpClient) { }
 
     getRiskmonitorDetails(id:string) {

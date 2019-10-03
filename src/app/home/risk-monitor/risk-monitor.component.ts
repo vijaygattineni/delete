@@ -16,10 +16,11 @@ export class RiskMonitorComponent implements OnInit {
   riskData;
   color:string;
   risktypeData;
+  localStorageId:any;
+  getData:any;
   constructor(private riskmonitorService: RiskMonitorService) { }
 
   ngOnInit(){
-
   /* this.riskData= [
       {
           'risk_area': 'left shoulder',
@@ -38,7 +39,7 @@ export class RiskMonitorComponent implements OnInit {
       }]
      */
 
-      this.getRiskmonitorDetails('1');
+    this.getRiskmonitorDetails('1');
     
     this.options = {
       chart: {
@@ -114,16 +115,18 @@ export class RiskMonitorComponent implements OnInit {
   pickColor(risk:string) {
     if(risk === 'very high risk') this.color='red';
     else if(risk === 'At risk') this.color='orangered';
-    else if(risk === 'no risk') this.color='green'
+    else if(risk === 'No risk') this.color='green'
     else this.color='yellow';
   }
   getRiskmonitorDetails(id:string) {
+    
     this.riskmonitorService.getRiskmonitorDetails(id).subscribe((result) => {
       this.riskData = result;
+      this.localStorageId =JSON.stringify(localStorage.getItem('dataSource'));
+      this.getData=JSON.parse(this.localStorageId);
+      console.log('id from local',this.localStorageId);
       console.log('riskdata',this.riskData);
+      console.log('getData',this.getData);
     })
   }
-
-
-  
 }

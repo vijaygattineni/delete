@@ -79,10 +79,8 @@ export class RegisterPage implements OnInit {
       // console.log('post data', this.allUser);
       if (result) {
         window.alert('Created Successfully');
-        localStorage.setItem('dataSource', this.allUser);
+        localStorage.setItem('dataSource',JSON.stringify(this.allUser));
         this.router.navigate(['home']);
-
-      
       }
       else {
         window.alert('enter correct details');
