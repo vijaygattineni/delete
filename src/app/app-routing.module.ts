@@ -4,22 +4,21 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'list',
+    redirectTo: 'landing',
     pathMatch: 'full'
   },
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
-  {
-    path: 'list',
-    loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
-  },
   { path: 'register',
     loadChildren: () => import('./register/register.module').then(m => m.RegisterPageModule)
   },
   { path: 'landing',
     loadChildren: () => import('./landing/landing.module').then(m => m.LandingPageModule)
+  },
+  { path: 'dynamic-profile',
+    loadChildren: () => import('./dynamic-profile/dynamic-profile.module').then(m => m.DynamicProfilePageModule)
   }
 ];
 

@@ -13,17 +13,17 @@ export class Message {
 }
 
 @Component({
-  selector: 'app-list',
-  templateUrl: 'list.page.html',
-  styleUrls: ['list.page.scss']
+  selector: 'app-dynamic-profile',
+  templateUrl: './dynamic-profile.page.html',
+  styleUrls: ['./dynamic-profile.page.scss'],
 })
-export class ListPage implements OnInit {
+export class DynamicProfilePage implements OnInit {
 
   public message: any;
-  public d3v4: any;
+  // public d3v4: any;
 
   constructor(public toastController: ToastController) {
-    this.d3v4 = d3;
+    //d3 = d3;
 
     const ws = new $WebSocket('ws://localhost:8080');
     ws.send('hello');
@@ -82,7 +82,7 @@ export class ListPage implements OnInit {
     // append the svg object to the body of the page
     document.getElementById("wrapper").innerHTML = '';
 
-    var svg = this.d3v4.select('#wrapper')
+    var svg = d3.select('#wrapper')
       .append('svg')
       .attr('width', width + margin.left + margin.right)
       .attr('height', height + margin.top + margin.bottom)
@@ -90,38 +90,21 @@ export class ListPage implements OnInit {
       .attr('transform',
         'translate(' + margin.left + ',' + margin.top + ')');
 
-    // Labels of row and columns
     var myGroups = ['1', '2', '3', '4', '5'];
     var myVars = ['1', '2', '3', '4', '5'];
 
 
 
     // Build X scales and axis:
-    var x = this.d3v4.scaleBand()
-      .range([0, width])
-      .domain(myGroups);
 
-    // svg.append('g')
-    //   .attr('transform', 'translate(0,' + height + ')')
-    //   .call(this.d3v4.axisBottom(x))
+    var x = d3.scale.ordinal().domain(myGroups).rangeBands([0, width]);
+    var y = d3.scale.ordinal().domain(myVars).rangeBands([height, 0]);
 
-    // Build X scales and axis:
-    var y = this.d3v4.scaleBand()
-      .range([height, 0])
-      .domain(myVars);
-
-    // svg.append('g')
-    //   .call(this.d3v4.axisLeft(y));
-
-    // Build color scale
-    var myColor = this.d3v4.scaleLinear()
+    var myColor = d3.scale.linear()
       .range(['red', 'black'])
       .domain([1, 5])
 
-    //number = parseInt(hexString, 16)
-    // make string and assign to test
     var test = this.message.split('');
-
 
     var data = [];
     var ind = 0;
@@ -131,8 +114,6 @@ export class ListPage implements OnInit {
         ind++;
       }
     }
-    //Read the data
-    //d3.csv('https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/heatmap_data.csv', function(data) {
 
     svg.selectAll()
       .data(data, function (d) { return d.group + ':' + d.variable; })
@@ -140,15 +121,13 @@ export class ListPage implements OnInit {
       .append('rect')
       .attr('x', function (d) { return x(d.group) })
       .attr('y', function (d) { return y(d.variable) })
-      .attr('width', x.bandwidth())
-      .attr('height', y.bandwidth())
+      .attr('width', x.rangeBand())
+      .attr('height', y.rangeBand())
       .style('fill', function (d) { return myColor(d.value) })
 
     //})
   }
 
-
   ngOnInit() {
   }
-
 }
