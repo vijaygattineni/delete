@@ -18,7 +18,7 @@ export class RegisterPage implements OnInit {
   nutritions = [];
   activities = [];
   frictions = [];
-
+  genders=['M','F'];
 
 
   allUser: any;

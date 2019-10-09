@@ -16,8 +16,8 @@
     </ion-row>
   </ion-grid>
   <div class="patient">
-    <h6 class="patientprofiletitle">Patient Profile Data</h6>
-    <form class="patientprofile">
+    <h6 class="patientprofiletitle">Patient Profile Data</h6>>
+    <form class="patientprofile"> 
       <div class="row" style="display:flex; margin-bottom: 20px">
         <label class="label">Name</label>
         <input type="text" [(ngModel)]="data.patient_profile.name" name="name" placeholder="name" class="input">
@@ -28,7 +28,10 @@
       </div>
       <div class="row1" style="display:flex;  margin-bottom: 20px">
         <label class="label">Gender/Sex</label>
-        <input type="text" [(ngModel)]="data.patient_profile.gender" name="gender" placeholder="gender" class="input">
+        <select class="gender" name="gender" [(ngModel)]="data.patient_profile.gender">
+          <option *ngFor="let gender of genders" [value]="gender">{{gender}}</option>
+        </select>
+        <!-- <input type="text" [(ngModel)]="data.patient_profile.gender" name="gender" placeholder="gender" class="input"> -->
         <label class="label">Age</label>
         <input type="number" [(ngModel)]="data.patient_profile.age" name="age" placeholder="age" class="input"><br>
       </div>
@@ -42,6 +45,9 @@
   </div>
   <div class="risk">
     <h6 class="riskassessmenttitle" style="display: inline-block">Risk Assessment</h6>
+    <p class="text">Select the appropriate risk assessment scale and then the appropriate value from the 
+        respective dropdown menus
+    </p>
     <span class="scale" style="display: inline-block">
       <label class="scalelabel">Scale</label>
       <select class="select">
@@ -90,54 +96,61 @@
     <h6 class="otherdetailstitle">Other Factors</h6>
     <form class="otherdetails">
       <div class="row" style="display: flex">
-        <input type="checkbox" [(ngModel)]="data.other_factors.previous_pressure_injury" name="name" placeholder="name"
+<!--         <input type="checkbox" [(ngModel)]="data.other_factors.previous_pressure_injury" name="name" placeholder="name"
           class="box">
-        <label class="input">Previous Pressure Injury</label> <br>
-        <input type="checkbox" [(ngModel)]="data.other_factors.kidney_disease" name="name" placeholder="name"
-          class="box">
-        <label class="input">Kidney Disease</label> <br>
-        <input type="checkbox" [(ngModel)]="data.other_factors.anemia_or_haemoglobinopathies" name="name"
-          placeholder="name" class="box">
-        <label class="input">Anemia or Haemoglobinopathies</label> <br>
+        <label class="input">Previous Pressure Injury</label> -->
+        <ion-checkbox [(ngModel)]="data.other_factors.previous_pressure_injury" name="name"></ion-checkbox>
+          <ion-label class="input">Previous Pressure Injury</ion-label> <br>
+        <ion-checkbox [(ngModel)]="data.other_factors.kidney_disease" name="name" placeholder="name"
+          class="box"></ion-checkbox>
+        <ion-label class="input">Kidney Disease</ion-label> <br>
+        <ion-checkbox [(ngModel)]="data.other_factors.anemia_or_haemoglobinopathies" name="name"
+          placeholder="name" class="box"></ion-checkbox>
+        <ion-label class="input">Anemia or Haemoglobinopathies</ion-label> <br>
       </div>
       <div class="row1" style="display: flex">
-        <input type="checkbox" [(ngModel)]="data.other_factors.diabetes" name="name" placeholder="name" class="box">
-        <label class="input">Diabetes</label> <br>
-        <input type="checkbox" [(ngModel)]="data.other_factors.respiratory_condition" name="name" placeholder="name"
-          class="box">
-        <label class="input">Respiratory Condition</label> <br>
-        <input type="checkbox" [(ngModel)]="data.other_factors.bone_infections" name="name" placeholder="name"
-          class="box">
-        <label class="input">Bone Infections</label> <br>
+        <ion-checkbox [(ngModel)]="data.other_factors.diabetes" name="name" 
+        placeholder="name" class="box"></ion-checkbox>
+        <ion-label class="input">Diabetes</ion-label> <br>
+        <ion-checkbox [(ngModel)]="data.other_factors.respiratory_condition" name="name" placeholder="name"
+          class="box"></ion-checkbox>
+        <ion-label class="input">Respiratory Condition</ion-label> <br>
+        <ion-checkbox [(ngModel)]="data.other_factors.bone_infections" name="name" placeholder="name"
+          class="box"></ion-checkbox>
+        <ion-label class="input">Bone Infections</ion-label> <br>
       </div>
       <div class="row1" style="display: flex">
-        <input type="checkbox" [(ngModel)]="data.other_factors.smoker" name="name" placeholder="name" class="box">
-        <label class="input">Smoker</label> <br>
-        <input type="checkbox" [(ngModel)]="data.other_factors.urogenital_condition" name="name" placeholder="name"
-          class="box">
-        <label class="input">Urogenital Condition</label> <br>
-        <input type="checkbox" [(ngModel)]="data.other_factors.paralysis" name="name" placeholder="name" class="box">
-        <label class="input">Paralysis</label> <br>
+        <ion-checkbox [(ngModel)]="data.other_factors.smoker" name="name" 
+        placeholder="name" class="box"></ion-checkbox>
+        <ion-label class="input">Smoker</ion-label> <br>
+        <ion-checkbox [(ngModel)]="data.other_factors.urogenital_condition" name="name" placeholder="name"
+          class="box"></ion-checkbox>
+        <ion-label class="input">Urogenital Condition</ion-label> <br>
+        <ion-checkbox [(ngModel)]="data.other_factors.paralysis" name="name" 
+        placeholder="name" class="box"></ion-checkbox>
+        <ion-label class="input">Paralysis</ion-label> <br>
       </div>
       <div class="row1" style="display: flex">
-        <input type="checkbox" [(ngModel)]="data.other_factors.cardiovascular_disease" name="name" placeholder="name"
-          class="box">
-        <label class="input">Cardiovascular Disease</label> <br>
-        <input type="checkbox" [(ngModel)]="data.other_factors.sepsis" name="name" placeholder="name" class="box">
-        <label class="input">Sepsis</label> <br>
-        <input type="checkbox" [(ngModel)]="data.other_factors.muscular_dystrophy_myopathies" name="name"
-          placeholder="name" class="box">
-        <label class="input">Muscular Dystrophy Myopathies</label> <br>
+        <ion-checkbox [(ngModel)]="data.other_factors.cardiovascular_disease" name="name" placeholder="name"
+          class="box"></ion-checkbox>
+        <ion-label class="input">Cardiovascular Disease</ion-label> <br>
+        <ion-checkbox [(ngModel)]="data.other_factors.sepsis" name="name" 
+        placeholder="name" class="box"></ion-checkbox>
+        <ion-label class="input">Sepsis</ion-label> <br>
+        <ion-checkbox [(ngModel)]="data.other_factors.muscular_dystrophy_myopathies" name="name"
+          placeholder="name" class="box"></ion-checkbox>
+        <ion-label class="input">Muscular Dystrophy Myopathies</ion-label> <br>
       </div>
       <div class="row1" style="display: flex">
-        <input type="checkbox" [(ngModel)]="data.other_factors.anti_coagulants" name="name" placeholder="name"
-          class="box">
-        <label class="input">Anti Coagulants</label> <br>
-        <input type="checkbox" [(ngModel)]="data.other_factors.pneumonia" name="name" placeholder="name" class="box">
-        <label class="input">Pneumonia</label> <br>
-        <input type="checkbox" [(ngModel)]="data.other_factors.hip_or_knee_surgery" name="name" placeholder="name"
-          class="box">
-        <label class="input">Hip or Knee Surgery</label> <br>
+        <ion-checkbox [(ngModel)]="data.other_factors.anti_coagulants" name="name" placeholder="name"
+          class="box"></ion-checkbox>
+        <ion-label class="input">Anti Coagulants</ion-label> <br>
+        <ion-checkbox [(ngModel)]="data.other_factors.pneumonia" name="name" 
+        placeholder="name" class="box"></ion-checkbox>
+        <ion-label class="input">Pneumonia</ion-label> <br>
+        <ion-checkbox [(ngModel)]="data.other_factors.hip_or_knee_surgery" name="name" placeholder="name"
+          class="box"></ion-checkbox>
+        <ion-label class="input">Hip or Knee Surgery</ion-label> <br>
       </div>
     </form>
   </div>
