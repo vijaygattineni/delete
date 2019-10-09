@@ -11,13 +11,16 @@
 
 <ion-content>
   <ion-list>
+
     <ion-item>
-      Message from server: {{this.message}}
+      Dynamic pressure profile
     </ion-item>
+
+    <ion-item *ngIf="errorConnecting">
+      Error in connection. Unable to connect to device.
+    </ion-item>
+
   </ion-list>
-  <!--
-    <div *ngIf="selectedItem" padding>
-      You navigated here from <b>{{selectedItem.title }}</b>
-    </div>
-  -->
+  <div id="wrapper">
+  </div>
 </ion-content>

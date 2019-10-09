@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegisterService {
-  userInfoapi = 'http://b2d272e5.ngrok.io/smart_sheet/api/patients';
-  riskAssessmetApi = 'http://b2d272e5.ngrok.io/smart_sheet/api/master-data?type=';
+  userInfoapi = environment.prefix + 'patients';
+  riskAssessmetApi = environment.prefix + 'master-data?type=';
+
   constructor(private httpClient: HttpClient) { }
 
   public registerUsers(obj) {
@@ -17,8 +19,6 @@ export class RegisterService {
   public getUserInfo() {
     return this.httpClient.get(this.userInfoapi);
   }
-
-  //dropdown
 
   public riskAssessmentData(filter) {
     let filterApi = this.riskAssessmetApi + filter;
