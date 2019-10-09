@@ -1,32 +1,47 @@
-#xaxis .domain {
-    fill: none;
-    stroke: #000;
+#xaxis text,
+#yaxis text {
+  font-size: 12px;
+}
+
+path {
+  fill: none;
+  stroke: #aaafaf;
+  shape-rendering: crispEdges;
+  stroke-width: 1px;
+}
+
+#wrapper {
+  margin-top: 50px;
+  .tick {
+    line {
+      stroke: black;
+    }
   }
-  
-  #xaxis text,
-  #yaxis text {
-    font-size: 12px;
-  }
-  
-  .pressure-tooltip {
-      position: absolute;
-      background-color: rgba(255,255,255,1.0);
-      color: rgba(0,0,0,1.0);
-      padding: 1px;
-      border: 1px solid rgba(0,0,0,.2);
-      z-index: 10000;
-      display: block;
-      font-family: Arial, sans-serif;
-      font-size: 13px;
-      text-align: left;
-      pointer-events: none;
-      white-space: nowrap;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    
-      background: rgba(255,255,255, 0.8);
-      border: 1px solid rgba(0,0,0,0.5);
-      border-radius: 4px;
-  }
+}
+
+.pressure-tooltip {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 1.0);
+  color: rgba(0, 0, 0, 1.0);
+  padding: 1px;
+  border: 1px solid rgba(0, 0, 0, .2);
+  z-index: 10000;
+  display: block;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  text-align: left;
+  pointer-events: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+}
+.chart-loader {
+  margin-left: 50%;
+  padding-top: 100px;
+}

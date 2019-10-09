@@ -103,9 +103,8 @@ export class RiskMonitorComponent implements OnInit {
     else this.color = 'yellow';
   }
   getRiskmonitorDetails(id: string) {
-
     this.riskmonitorService.getRiskmonitorDetails(id).subscribe((result) => {
       this.riskData = result;
-    })
+    });
   }
 }

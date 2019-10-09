@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HomeService } from '../home.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,39 +8,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  patientProfile: {
-      'patient_name': string,
-      'age': number,
-      'bed_id': number,
-      'status': string,
-      'heart_rate': number,
-      'respiratory_rate': number
-  };
-  risk: {
-    'risk_area': string,
-    'risk_level': string,
-    'risk_area_image': string,
-    'recommendation': string
-  };
+  patientProfile: any;
+  risk: any;
+  fetchProfileInProgress: boolean;
+  fetchRiskRecommInProgress: boolean;
+  noRiskData: boolean;
+  patientDetails: any;
 
-  constructor() { }
+  constructor(private homeService: HomeService) {
+    if (localStorage.getItem('dataSource')) {
+      this.patientDetails = JSON.parse(localStorage.getItem('dataSource'));
+    }
+   }
 
   ngOnInit() {
-    this.patientProfile  = {
-      patient_name: 'John',
-      age: 43,
-      bed_id: 1,
-      status: 'occupied',
-      heart_rate: 120,
-      respiratory_rate: 62
-    };
+    this.fetchProfileInProgress = true;
+    this.fetchRiskRecommInProgress = true;
+    this.noRiskData = false;
 
-    this.risk = {
-      risk_area: 'left shoulder is at risk',
-      risk_level: 'very high risk',
-      risk_area_image: '../../../assets/Risk_Aria.svg',
-      recommendation : 'change position in next one hour'
-    };
+    this.homeService.getPatientInfo(this.patientDetails.id)
+    .subscribe((response) => {
+        this.fetchProfileInProgress = false;
+        this.patientProfile = response;
+      }, (errorResponse) => {
+        console.log(errorResponse);
+      });
+
+    this.homeService.getCurrentRiskRecommendations(this.patientDetails.id)
+    .subscribe((response) => {
+      this.fetchRiskRecommInProgress = false;
+      if (response.length === 0) {
+        this.noRiskData = true;
+      } else {
+        this.risk = response[0];
+      }
+      }, (errorResponse) => {
+        console.log(errorResponse);
+      });
   }
 
 }

@@ -1,34 +1,122 @@
 .patient-dashboard {
-    .heading-box {
-        font-size: 24px;
-        padding-top: 20px;
-    }
-    .sub-heading-label {
-        font-size: 12px;
-    }
-    .value {
-        font-size: 18px;
-        padding-top: 6px;
-        padding-bottom: 12px;
-    }
-    .xl-value {
-        font-size: 18px;
-        padding-top: 6px;
-        padding-bottom: 12px;
-    }
-    .action-label {
-        font-size: 12px;
-        color: #00B4FF;
-    }
-    .high-risk-text {
-        font-size: 20px;
-        color:#FF4747;
-    }
-    .recomendation-text {
-        font-size: 20px;
-        color: black;
-    }
-    .p-top-15 {
-        padding-top: 15px;
-    }
+  .heading-box {
+    font-family: 'Roboto';
+    font-size: 24px;
+    padding-top: 20px;
+    font-weight: 100;
+  }
+
+  .sub-heading-label {
+    font-family: 'Roboto';
+    font-size: 12px;
+    font-weight: 100;
+  }
+
+  .value {
+    font-size: 18px;
+    padding-top: 6px;
+    padding-bottom: 12px;
+  }
+
+  .xl-value {
+    font-size: 18px;
+    padding-top: 6px;
+    padding-bottom: 12px;
+  }
+
+  .action-label {
+    font-size: 12px;
+    color: #00B4FF;
+  }
+
+  .high-risk-text {
+    font-size: 20px;
+    color: #FF4747;
+  }
+
+  .recomendation-text {
+    font-size: 20px;
+    color: black;
+  }
+
+  .p-top-15 {
+    padding-top: 15px;
+  }
+
+  .greensquare {
+    height: 9px;
+    width: 9px;
+    border-radius: 0.5px;
+    background-color: #7ae571;
+    margin-top: 14px;
+    margin-right: 6px;
+  }
+
+  .yellowsquare {
+    height: 9px;
+    width: 9px;
+    border-radius: 0.5px;
+    background-color: orange !important;
+    margin-top: 14px;
+    margin-right: 6px;
+  }
+
+  .orangesquare {
+    height: 9px;
+    width: 9px;
+    border-radius: 0.5px;
+    background-color: orangered !important;
+    margin-top: 14px;
+    margin-right: 6px;
+  }
+
+  .redsquare {
+    height: 9px;
+    width: 9px;
+    border-radius: 0.5px;
+    background-color: red;
+    margin-top: 14px;
+    margin-right: 6px;
+  }
+
+  .label {
+    height: 14px;
+    width: 76px;
+    color: black;
+    font-family: Roboto;
+    font-size: 12px;
+    font-weight: 100;
+    line-height: 14px;
+  }
+
+  .yellowsquare {
+    height: 10px;
+    width: 10px;
+    background-color: orangered;
+    font-size: 10px;
+  }
+
+  .orangesquare {
+    height: 10px;
+    width: 10px;
+    background-color: orange;
+    font-size: 10px;
+  }
+
+  .redsquare {
+    height: 10px;
+    width: 10px;
+    background-color: red;
+    font-size: 10px;
+  }
+
+  .risk-loader {
+    margin-left: 50%;
+    margin-top: 100px;
+  }
+
+  .patient-profile-loader {
+    margin-left: 50%;
+    margin-top: 30px;
+  }
 }

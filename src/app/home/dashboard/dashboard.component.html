@@ -4,18 +4,18 @@
       Patient Profile
     </ion-col>
   </ion-row>
-  <ion-row>
-    <ion-col size="8">
+  <ion-row *ngIf="!fetchProfileInProgress" style="border-radius: 5px;border: solid 1px #aaafaf;">
+    <ion-col size="8" *ngIf="this.patientProfile && this.patientProfile.name">
       <ion-row>
         <ion-col class="lite-black-bg">
           <div class="sub-heading-label">Patient Name</div>
-          <div class="value">{{this.patientProfile.patient_name}}</div>
+          <div class="value">{{this.patientProfile.name}}</div>
           <div class="action-label">View Full Profile</div>
         </ion-col>
         <ion-col>
-          <div class="sub-heading-label">Status</div>
+          <!-- <div class="sub-heading-label">Status</div>
           <div class="value">{{this.patientProfile.status}}</div>
-          <div class="action-label">Stop monitoring</div>
+          <div class="action-label">Stop monitoring</div> -->
         </ion-col>
         <ion-col>
           <div class="sub-heading-label">Age</div>
@@ -23,7 +23,7 @@
         </ion-col>
         <ion-col>
           <div class="sub-heading-label">Bed ID</div>
-          <div class="value">{{this.patientProfile.bed_id}}</div>
+          <div class="value">{{this.patientProfile.device_id}}</div>
         </ion-col>
       </ion-row>
 
@@ -32,7 +32,10 @@
       <ion-row>
         <ion-col>
           <div class="sub-heading-label">Heart Rate</div>
-          <div class="xl-value">{{this.patientProfile.heart_rate}}</div>
+          <div class="xl-value">
+            NA
+            <!-- {{this.patientProfile.heart_rate}} -->
+          </div>
         </ion-col>
       </ion-row>
 
@@ -41,10 +44,16 @@
       <ion-row>
         <ion-col>
           <div class="sub-heading-label">Respiratory Rate</div>
-          <div class="xl-value">{{this.patientProfile.respiratory_rate}}</div>
+          <div class="xl-value">
+            NA
+            <!-- {{this.patientProfile.respiratory_rate}} -->
+          </div>
         </ion-col>
       </ion-row>
     </ion-col>
+  </ion-row>
+  <ion-row size="12" class="patient-profile-loader">
+      <ion-spinner name="bubbles" *ngIf="fetchProfileInProgress"></ion-spinner>
   </ion-row>
 
   <ion-row>
@@ -52,7 +61,8 @@
       Risk & Recommendations
     </ion-col>
   </ion-row>
-  <ion-row class="p-top-15">
+  <ion-row style="border-radius: 5px;border: solid 1px #aaafaf;" class="p-top-15"
+    *ngIf="this.risk && this.risk.risk_area">
     <ion-col size="12">
       Risk Area
       <ion-row>
@@ -60,23 +70,39 @@
           {{this.risk.risk_area}}
         </ion-col>
         <ion-col size="4">
-          <img [src]="this.risk.risk_area_image">
+          <!-- <img [src]="this.risk.risk_area_image"> -->
         </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-left:4%">
+        <p class="greensquare"></p>
+        <p class="label">No Risk</p>
+        <p class="yellowsquare"></p>
+        <p class="label">Low Risk</p>
+        <p class="orangesquare"></p>
+        <p class="label">High Risk</p>
+        <p class="redsquare"></p>
+        <p class="label">Very High Risk</p>
       </ion-row>
     </ion-col>
   </ion-row>
 
-
-  <ion-row class="p-top-15">
+  <ion-row style="border-radius: 5px;border: solid 1px #aaafaf; margin-top:15px" class="p-top-15"
+    *ngIf="this.risk && this.risk.risk_area">
     <ion-col size="12">
       Recomendation
       <ion-row>
         <ion-col size="8" class="recomendation-text">
-          {{this.risk.recommendation}}
+          {{this.risk.recommendations}}
         </ion-col>
         <ion-col size="4">
         </ion-col>
       </ion-row>
     </ion-col>
+  </ion-row>
+
+  <ion-row size="12" class="risk-loader">
+    <ion-spinner name="bubbles" *ngIf="fetchRiskRecommInProgress"></ion-spinner>
+    <span *ngIf="noRiskData">No Data</span>
   </ion-row>
 </ion-grid>

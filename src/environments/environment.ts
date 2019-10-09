@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  //prefix: 'http://cea39217.ngrok.io/smart_sheet/api/'
+  prefix: 'http://ec2-52-54-71-29.compute-1.amazonaws.com/smart_sheet/api/',
+  url: 'http://de3fc22f.ngrok.io/'
 };
 
 /*
