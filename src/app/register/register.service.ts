@@ -24,5 +24,4 @@ export class RegisterService {
     let filterApi = this.riskAssessmetApi + filter;
     return this.httpClient.get(filterApi);
   }
-
 }
