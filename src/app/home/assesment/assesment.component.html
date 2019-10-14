@@ -1,4 +1,15 @@
-<p>
-  assesment works!
-</p>
-<app-risk-assessment></app-risk-assessment>
+<ion-row class="row">
+<ion-label class="newrecordtitle">New Assessment Records</ion-label>
+</ion-row>
+<ion-col size='8' class="assessmenttabs">
+<ul>
+    <li style="width:25%" *ngFor="let config of this.tabConfig"><span (click)="onTabSelect(this.config)"
+        [ngClass]="{'active' : this.selectedTab == this.config.name}">{{this.config.title}}</span></li>
+</ul>
+<div *ngIf="this.selectedTab === 'skin-assessment'">
+    <app-skin-assessment></app-skin-assessment>
+  </div>
+  <div *ngIf="this.selectedTab === 'risk-assessment'">
+    <app-risk-assessment></app-risk-assessment>
+  </div>
+  </ion-col>

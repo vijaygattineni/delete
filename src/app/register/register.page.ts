@@ -3,6 +3,7 @@ import { RegisterService } from './register.service';
 import { Key } from 'protractor';
 import { RegisterData } from './register';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterPage implements OnInit {
   data: RegisterData;
-  constructor(private registerService: RegisterService, private router: Router) { }
+  constructor(public toastController: ToastController, private registerService: RegisterService, private router: Router, ) { }
   sensory_perceptions = [];
   mobilitys = [];
   moistures = [];
@@ -27,6 +28,23 @@ export class RegisterPage implements OnInit {
 
   }
   checkboxData: any;
+
+  async validIDToast() {
+    const toast = await this.toastController.create({
+      message: 'Registered Successfully',
+      duration: 2000,
+      color: 'success'
+    });
+    toast.present();
+  }
+  async invalidIDToast() {
+    const toast = await this.toastController.create({
+      message: 'Enter the details Correctly',
+      duration: 4000,
+      color: 'danger'
+    });
+    toast.present();
+  }
   ngOnInit() {
     this.data = {
       patient_profile: {
@@ -64,29 +82,23 @@ export class RegisterPage implements OnInit {
     };
     this.checkboxData = Object.keys(this.data.other_factors);
     // console.log(checkbox, this.checkboxData[0]);
-    this.getRiskAssessmentData('sensory');
-    this.getRiskAssessmentData('moisture');
+    this.getRiskAssessmentData();
+   /*  this.getRiskAssessmentData('moisture');
     this.getRiskAssessmentData('activity');
     this.getRiskAssessmentData('mobility');
     this.getRiskAssessmentData('nutrition');
-    this.getRiskAssessmentData('friction');
+    this.getRiskAssessmentData('friction'); */
 
   }
   getdata() {
 
     this.registerService.registerUsers(this.data).subscribe((result) => {
       this.allUser = result;
-      // console.log('post data', this.allUser);
-      if (result) {
-        window.alert('Created Successfully');
-        localStorage.setItem('dataSource',JSON.stringify(this.allUser));
-        this.router.navigate(['home']);
-      }
-      else {
-        window.alert('enter correct details');
-      }
+      this.validIDToast();
+      localStorage.setItem('dataSource',JSON.stringify(this.allUser));
+      this.router.navigate(['home']);
     })
-
+    if(!this.allUser) this.invalidIDToast();
   };
 
 
@@ -97,7 +109,7 @@ export class RegisterPage implements OnInit {
     })
   }
 
-  getRiskAssessmentData(filter: string) {
+  /* getRiskAssessmentData(filter: string) {
     this.registerService.riskAssessmentData(filter).subscribe((result) => {
       if (filter === 'sensory' && result) {
         this.sensory_perceptions.push(result);
@@ -117,6 +129,33 @@ export class RegisterPage implements OnInit {
       else {
         this.frictions.push(result);
       }
+    })
+  } */
+
+  getRiskAssessmentData() {
+    this.registerService.riskAssessmentData().subscribe((result) => {
+     for(let i in result) {
+        if (result[i].type === 'sensory' && result) {
+          this.sensory_perceptions.push(result[i]);
+        }
+        else if (result[i].type === 'moisture' && result) {
+          this.moistures.push(result[i]);
+        }
+        else if (result[i].type === 'activity' && result) {
+          this.activities.push(result[i]);
+        }
+        else if (result[i].type === 'mobility' && result) {
+          this.mobilitys.push(result[i]);
+        }
+        else if (result[i].type === 'nutrition' && result) {
+          this.nutritions.push(result[i]);
+        }
+        else {
+          this.frictions.push(result[i]);
+        }
+     }
+     //console.log("sensory",this.sensory_perceptions[0]);
+     //console.log("nutrition",this.nutritions)
     })
   }
 

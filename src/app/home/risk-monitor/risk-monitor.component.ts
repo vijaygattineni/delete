@@ -18,9 +18,17 @@ export class RiskMonitorComponent implements OnInit {
   risktypeData;
   localStorageId: any;
   getData: any;
+  riskDataInProgress:boolean;
+  noRiskData: boolean;
+  graphData: any;
+  linedata: any;
+
   constructor(private riskmonitorService: RiskMonitorService) { }
 
   ngOnInit() {
+    this.riskDataInProgress=true;
+    this.noRiskData = false;
+
     this.localStorageId = JSON.parse(localStorage.getItem('dataSource'));
 
     this.getRiskmonitorDetails(this.localStorageId.id);
@@ -103,8 +111,13 @@ export class RiskMonitorComponent implements OnInit {
     else this.color = 'yellow';
   }
   getRiskmonitorDetails(id: string) {
+    this.riskDataInProgress = false;
     this.riskmonitorService.getRiskmonitorDetails(id).subscribe((result) => {
       this.riskData = result;
+      console.log('graph',this.riskData)
+      if(this.riskData.length === 0){
+        this.noRiskData = true;
+      }
     });
   }
 }

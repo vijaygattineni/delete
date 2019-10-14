@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class RiskAssessmentService {
-  riskAssessmetApi = 'http://de3fc22f.ngrok.io/smart_sheet/api/master-data?type=';
+  riskAssessmetApi = environment.prefix ='master-data?type=';
   constructor(private httpClient: HttpClient) { }
 
   public riskAssessmentData(filter) {

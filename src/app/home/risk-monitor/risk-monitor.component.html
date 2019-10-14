@@ -4,13 +4,17 @@
       <div class="second">
         <ion-grid>
           <ion-row class="subtitle">
-            <ion-col size="6">
+             <ion-col size="6">
               Risk Area
             </ion-col>
             <ion-col size="6">
               Recommendation
             </ion-col>
           </ion-row>
+          <ion-row size="12" class="risk-loader">
+          <ion-spinner name="bubbles" *ngIf="riskDataInProgress"></ion-spinner>
+          <span *ngIf="noRiskData">No Data</span>
+        </ion-row>
           <ion-row class="assessment_level" *ngFor="let data of riskData">
               <span>{{pickColor(data.risk_name)}}</span>
               <ion-col size="6">

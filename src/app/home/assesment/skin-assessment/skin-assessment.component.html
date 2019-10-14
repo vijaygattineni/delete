@@ -1,30 +1,109 @@
-<p>
-  skin-assessment works!
-</p>
 <ion-grid>
-  <ion-row class="skin">
-      <ion-col size="2"><label class="label">Wound</label></ion-col>
-      <ion-col size="10"><label>Yes</label><input type="radio" name="yes" value="yes">
-      <label>No</label><input type="radio" name="no" value="no"></ion-col>
-      <ion-col size="2"><label class="label">Redness</label></ion-col>
-      <ion-col size="10"><label>Yes</label><input type="radio" name="yes" value="yes">
-      <label>No</label><input type="radio" name="no" value="no"></ion-col>
-      <ion-col size="2"><label class="label">Infection</label></ion-col>
-      <ion-col size="10"><label>Yes</label><input type="radio" name="yes" value="yes">
-      <label>No</label><input type="radio" name="no" value="no"></ion-col>
+  <ion-row>
+    <ion-col size="3"><ion-label class="label">Wound</ion-label></ion-col>
+     <ion-col size="9"><input type="radio" class="yes" name="wound" value="yes" (click)="setradio('Yes')" [checked]='true' [(ngModel)]="data.assessments[0].wound">
+      <ion-label class="text">Yes</ion-label>
+      <input type="radio" class="no" name="wound" value="no" (click)="setradio('No')" [(ngModel)]="data.assessments[0].wound">
+      <ion-label class="text">No</ion-label>
+    </ion-col>
 
-      <ion-col size="2"><label class="label">Odour</label></ion-col>
-      <ion-col size="10"><select class="input" name="odour">
-          <option>Yes</option>
-          <option>No</option>
-        </select></ion-col>
-        <ion-col size="10"><select class="input" name="odour">
-          <option>Yes</option>
-          <option>No</option>
-        </select></ion-col>
-        <ion-col size="10"><select class="input" name="odour">
-          <option>Yes</option>
-          <option>No</option>
-        </select></ion-col>
+    <!-- <ion-radio-group>
+      <ion-label>Wound</ion-label>
+      <ion-item>
+          <ion-label>Yes</ion-label>
+          <ion-radio slot="start" value="wound"></ion-radio>
+        </ion-item>
+        <ion-item>
+            <ion-label>No</ion-label>
+            <ion-radio slot="start" value="wound"></ion-radio>
+          </ion-item>
+    </ion-radio-group> -->
   </ion-row>
+    <ion-row size="12">
+        <div *ngIf="isSelected('Yes')" class="box">
+               <ion-checkbox class="name" (click)="addwound('Arterial/pad')" [(ngModel)]=isWoundType1></ion-checkbox>
+              <ion-label class="input">Arterial/PAD</ion-label>
+              <ion-checkbox class="name" (click)="addwound('a')" [(ngModel)]=isWoundType2></ion-checkbox>
+              <ion-label class="input">Arterial/PAD</ion-label>
+              <ion-checkbox class="name" (click)="addwound('b/pad')" [(ngModel)]=isWoundType3></ion-checkbox>
+              <ion-label class="input">Arterial</ion-label>
+              <ion-checkbox class="name" (click)="addwound('c')" [(ngModel)]=isWoundType4></ion-checkbox>
+              <ion-label class="input">Arterial/PAD</ion-label>
+              <ion-checkbox class="name"  (click)="addwound('d')" [(ngModel)]=isWoundType5></ion-checkbox>
+              <ion-label class="input">Arterial/PAD</ion-label>
+              <ion-checkbox class="name" (click)="addwound('e')" [(ngModel)]=isWoundType6></ion-checkbox>
+              <ion-label class="input">Arterial/PAD</ion-label>
+              <ion-checkbox class="name"(click)="addwound('f/pad')" [(ngModel)]=isWoundType7></ion-checkbox>
+              <ion-label class="input">Arterial/PAD</ion-label>
+              <ion-checkbox class="name" (click)="addwound('e/pad')" [(ngModel)]=isWoundType8></ion-checkbox>
+              <ion-label class="input">Arterial/PAD</ion-label>
+        </div>
+      </ion-row>
+  <ion-row>
+      <ion-col size="3"><ion-label class="label">Redness</ion-label></ion-col>
+      <ion-col size="9"><input type="radio" class="yes" name="red" value="yes" [(ngModel)]="data.assessments[0].redness">
+        <ion-label class="text">Yes</ion-label>
+        <input type="radio" class="no" name="red" value="no"  [(ngModel)]="data.assessments[0].redness">
+        <ion-label class="text">No</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col size="3"><ion-label class="label">Infection</ion-label></ion-col>
+        <ion-col size="9"><input type="radio"  class="yes" name="infect" value="yes"  [(ngModel)]="data.assessments[0].infection">
+          <ion-label class="text">Yes</ion-label>
+          <input type="radio" class="no" name="infect" value="no" [(ngModel)]="data.assessments[0].infection">
+          <ion-label class="text">No</ion-label>
+        </ion-col>
+      </ion-row>
+    <ion-row>
+      <ion-col size="3"><ion-label class="label">Odour</ion-label></ion-col>
+      <ion-col size="9"><select class="option" name="odour" [(ngModel)]="data.assessments[0].odour">
+          <option *ngFor="let odour of odours" [value]="odour">{{odour}}</option>
+      </select></ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col size="3"><ion-label class="label">Pain</ion-label></ion-col>
+        <ion-col size="9"><select class="option" name="pain" [(ngModel)]="data.assessments[0].pain">
+            <option *ngFor="let pain of pains" [value]="pain">{{pain}}</option>
+        </select></ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col size="3"><label class="label">Moisture yype</label></ion-col>
+        <ion-col size="9"><select class="option" name="moisture" [(ngModel)]="data.assessments[0].moisture_type">
+            <option *ngFor="let moisture of moistures" [value]="moisture">{{moisture}}</option>
+        </select></ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col size="3"><label class="label">Edges</label></ion-col>
+        <ion-col size="9"><select class="option" name="edge" [(ngModel)]="data.assessments[0].edges">
+            <option *ngFor="let edge of edges" [value]="edge">{{edge}}</option>
+        </select></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="3"><ion-label class="label">Measurement</ion-label></ion-col>
+      <ion-col>
+          <ion-label class="text1">Length(mm)</ion-label>
+          <input type= "text" class="inputbox" [(ngModel)]="data.assessments[0].measurements_length">
+      </ion-col>
+      <ion-col>
+          <ion-label class="text1">Width(mm)</ion-label>
+          <input type= "textbox" class="inputbox" [(ngModel)]="data.assessments[0].measurements_width">
+      </ion-col>
+      <ion-col>
+          <ion-label class="text1">Depth(mm)</ion-label>
+          <input type= "textbox"  class="inputbox" [(ngModel)]="data.assessments[0].measurements_depth">
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="3"><ion-label class="text">Wound Area</ion-label></ion-col>
+      <ion-col size="9"><input type= "textbox"  class="inputbox" [(ngModel)]="data.assessments[0].wound_area"></ion-col>
+  </ion-row>
+    <ion-row>
+      <ion-button  color="light" (click)="postSkinAssessment()" class="add" style="text-transform: none;"> +Add Another Wound</ion-button>
+        <!-- <a href="#" class="add">Add Another Wounds</a> -->
+    </ion-row>
+    <ion-row>
+        <ion-button fill= "outline" class="cancel">Cancel</ion-button>
+        <ion-button fill= "outline" class="save" (click)="postSkinAssessment()">Save</ion-button>
+    </ion-row>
 </ion-grid>

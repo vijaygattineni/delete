@@ -11,13 +11,12 @@
         <span class="create-profile-heading">Create New Patient Profile</span>
       </ion-col>
       <ion-col style="text-align: right">
-        <!-- <ion-button type="submit" (click)="submit()">Create & Monitor</ion-button> -->
         <ion-button type="submit" (click)="submit()">Create & Monitor</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
   <div class="patient">
-    <h6 class="patientprofiletitle">Patient Profile Data</h6>>
+    <h6 class="patientprofiletitle">Patient Profile Data</h6>
     <form class="patientprofile"> 
       <div class="row" style="display:flex; margin-bottom: 20px">
         <label class="label">Name</label>
@@ -37,9 +36,9 @@
         <input type="number" [(ngModel)]="data.patient_profile.age" name="age" placeholder="age" class="input"><br>
       </div>
       <div class="row2" style="display:flex; margin-bottom: 20px">
-        <label class="label">Height(Cms)</label>
+        <label class="label">Height(Cm)</label>
         <input type="number" [(ngModel)]="data.patient_profile.height" name="height" placeholder="height" class="input">
-        <label class="label">Weight(Kgs)</label>
+        <label class="label">Weight(Kg)</label>
         <input type="number" [(ngModel)]="data.patient_profile.weight" name="weight" placeholder="weight" class="input">
       </div>
     </form>
@@ -61,34 +60,34 @@
       <div class="row" style="display:flex; margin-bottom: 20px">
         <label class="label">Sensory Perception</label>
         <select class="input" name="sensory_perception" [(ngModel)]="data.risk_assessment.sensory_perception">
-          <option *ngFor="let sensory_perception of sensory_perceptions[0]" [value]="sensory_perception">
+          <option *ngFor="let sensory_perception of sensory_perceptions" [value]="sensory_perception">
             {{sensory_perception.value}}</option>
         </select>
         <br>
         <label class="label">Mobility</label>
         <select class="input" name="mobility" [(ngModel)]="data.risk_assessment.mobility">
-          <option *ngFor="let mobility of mobilitys[0]" [value]="mobility">{{mobility.value}}</option>
+          <option *ngFor="let mobility of mobilitys" [value]="mobility">{{mobility.value}}</option>
         </select>
         <br>
       </div>
       <div class="row1" style="display:flex;  margin-bottom: 20px">
         <label class="label">Moisture</label>
         <select class="input" name="moisture" [(ngModel)]="data.risk_assessment.moisture">
-          <option *ngFor="let moisture of moistures[0]" [value]="moisture">{{moisture.value}}</option>
+          <option *ngFor="let moisture of moistures" [value]="moisture">{{moisture.value}}</option>
         </select>
         <label class="label">Nutrition</label>
         <select class="input" name="nutrition" [(ngModel)]="data.risk_assessment.nutrition">
-          <option *ngFor="let nutrition of nutritions[0]" [value]="nutrition">{{nutrition.value}}</option>
+          <option *ngFor="let nutrition of nutritions" [value]="nutrition">{{nutrition.value}}</option>
         </select>
       </div>
       <div class="row2" style="display:flex; margin-bottom: 20px">
         <label class="label">Activity</label>
         <select class="input" name="activity" [(ngModel)]="data.risk_assessment.activity">
-          <option *ngFor="let activity of activities[0]" [value]="activity">{{activity.value}}</option>
+          <option *ngFor="let activity of activities" [value]="activity">{{activity.value}}</option>
         </select>
         <label class="label">Friction/shear</label>
         <select class="input" name="friction" [(ngModel)]="data.risk_assessment.friction_shear">
-          <option *ngFor="let friction of frictions[0]" [value]="friction">{{friction.value}}</option>
+          <option *ngFor="let friction of frictions" [value]="friction">{{friction.value}}</option>
         </select>
       </div>
     </form>
@@ -97,9 +96,6 @@
     <h6 class="otherdetailstitle">Other Factors</h6>
     <form class="otherdetails">
       <div class="row" style="display: flex">
-<!--         <input type="checkbox" [(ngModel)]="data.other_factors.previous_pressure_injury" name="name" placeholder="name"
-          class="box">
-        <label class="input">Previous Pressure Injury</label> -->
         <ion-checkbox [(ngModel)]="data.other_factors.previous_pressure_injury" name="name"></ion-checkbox>
           <ion-label class="input">Previous Pressure Injury</ion-label> <br>
         <ion-checkbox [(ngModel)]="data.other_factors.kidney_disease" name="name" placeholder="name"

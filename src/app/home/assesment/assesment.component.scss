@@ -1,0 +1,43 @@
+.assessmenttabs {
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  li {
+    font-size: 12px;
+    float: left;
+  }
+
+  li span {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    background-color: #0c3555;
+  }
+
+  li .active {
+    background-color: #13507f;
+  }
+}
+.row {
+  margin-top: 4%;
+  .newrecordtitle {
+    font-size: 22px;
+    font-family: Roboto;
+  }
+  .cancel {
+    margin-left: 11vw;
+    height: 36px;
+    width: 75px;
+  }
+  .save {
+    margin-left: 2vw;
+    height: 36px;
+    width: 61px;
+  }
+}

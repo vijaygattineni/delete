@@ -1,5 +1,62 @@
-.skin{
+/* .skin{
     .label{
         min-width: 20%;
     }
+} */
+
+.yes{
+    margin-right:1vw;   
+}
+.no{
+    margin-right:1vw;
+}
+.text{
+    margin-right: 3vw;
+    font-size: 12px;
+}
+.text1{
+    font-size: 12px;
+}
+.label{
+    font-size: 12px;
+}
+.option{
+    min-width:50%;
+}
+.input{
+    margin-right:4vw;
+    font-size: 10px;
+}
+.name{
+    margin-right:2vw;
+    height:13px;
+    width:13px;
+}
+.box{
+    border: 1px solid grey;
+    width:93%;
+    padding:10px;
+}
+.inputbox{
+    width:30px;
+    height:20px;
+}
+a{
+    text-decoration: none;
+}
+.cancel{
+    height: 36px;	
+    width: 61px;
+    font-size: 12px;
+    margin-left:65%;
+}
+.save{
+    height: 36px;	
+    width: 61px; 
+    font-size: 12px;
+    margin-left: 3%;
+
+}
+.add{
+    font-size: 12px;
 }
