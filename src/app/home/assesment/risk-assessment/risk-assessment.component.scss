@@ -14,6 +14,20 @@
       min-width: 25%;
     }
   }
+  .text{
+    font-size: 12px;
+    margin-top: -8px;
+  }
+  .scale{
+    margin-left:69%;
+    .scalelabel{
+      font-size: 12px;
+      margin-right:  10px;
+    }
+    .select{
+      font-size: 12px;
+    }
+  }
   .otherdetailstitle {
     margin-top: 2%;
     color:black;
@@ -22,7 +36,6 @@
     padding: 2% 4% 2% 4%;
     font-size: 12px;
     margin-bottom:2%;
-   // background-color:  rgb(29, 30, 31);
    border:1px solid black;
     .table {
       width: 100%;
