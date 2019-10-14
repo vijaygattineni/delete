@@ -11,10 +11,11 @@ export class AssesmentComponent implements OnInit {
 
   showRiskItems: boolean;
   showSkinItems: boolean;
-  selectedAssesmentType: any;
-  riskAssesmentData: any;
-  skinAssesmentData: any;
-  selectedAssesmentData: any;
+  selectedAssessmentType: any;
+  riskAssessmentData: any;
+  skinAssessmentData: any;
+  selectedAssessmentData: any;
+  showCreateAssessment: boolean;
 
   constructor() { }
 
@@ -32,12 +33,20 @@ export class AssesmentComponent implements OnInit {
 
   onAssesmentSelection(type, assesment) {
     if (type === 'risk') {
-        this.selectedAssesmentType = 'risk';
+        this.selectedAssessmentType = 'risk';
     } else if (type === 'skin') {
-      this.selectedAssesmentType = 'skin';
+      this.selectedAssessmentType = 'skin';
     }
-    this.selectedAssesmentData = assesment;
-    console.log('this.selectedAssesmentData', this.selectedAssesmentData.assesments);
+    this.selectedAssessmentData = assesment;
+    console.log('this.selectedAssessmentData', this.selectedAssessmentData.assesments);
+  }
+
+  onCreateNew() {
+    this.showCreateAssessment = true;
+  }
+
+  onShowHistory() {
+    this.showCreateAssessment = false;
   }
 
   ngOnInit() {
@@ -48,7 +57,8 @@ export class AssesmentComponent implements OnInit {
     this.selectedTab = 'skin-assessment';
     this.showRiskItems = false;
     this.showSkinItems = false;
-    this.riskAssesmentData = [
+    this.showCreateAssessment = false;
+    this.riskAssessmentData = [
     {
       'created_date': '24-10-2019',
       'sensory_perception': 'completely limited',
@@ -103,7 +113,7 @@ export class AssesmentComponent implements OnInit {
       'urogential_condition': 'Yes',
       'sepsis': 'No'
     }];
-    this.skinAssesmentData = [
+    this.skinAssessmentData = [
       {
       'created_date': '24-10-2019',
       'assesments': [{
