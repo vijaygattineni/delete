@@ -97,12 +97,12 @@ export class PressureProfileComponent implements OnInit {
       .tickValues(d3.range(17));
 
     let y_xis = canvas.append('g')
-      .attr('transform', 'translate(150,10)')
+      .attr('transform', 'translate(75,10)')
       .attr('id', 'yaxis')
       .call(yAxis);
 
     let x_xis = canvas.append('g')
-      .attr('transform', 'translate(150,380)')
+      .attr('transform', 'translate(75,380)')
       .attr('id', 'xaxis')
       .call(xAxis);
 
@@ -111,7 +111,7 @@ export class PressureProfileComponent implements OnInit {
       .style('opacity', 0);
 
     let chart = canvas.append('g')
-      .attr('transform', 'translate(150,0)')
+      .attr('transform', 'translate(75,0)')
       .attr('id', 'bars')
       .selectAll('rect')
       .data(pressureData)
@@ -120,7 +120,6 @@ export class PressureProfileComponent implements OnInit {
       .attr('height', 19)
       .attr({
         'x': function (d) {
-          console.log('-->', d.created_at);
           return xscale(d.created_at);
         },
         'y': function (d, i) {
@@ -161,7 +160,6 @@ export class PressureProfileComponent implements OnInit {
       .subscribe((response) => {
         this.profileChartLoading = false;
         this.pressureChartData = response;
-        this.drawChart();
         if (this.pressureChartData.length > 0) {
           this.drawChart();
         } else {
