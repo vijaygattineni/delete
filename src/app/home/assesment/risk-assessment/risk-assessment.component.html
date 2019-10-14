@@ -1,89 +1,103 @@
-<form class="riskassessment">
-  <div class="row" style="display:flex; margin-bottom: 20px">
-    <label class="label">Sensory Perception</label>
-    <select class="input" name="sensory_perception" [(ngModel)]="data.risk_assessment.sensory_perception">
-      <option *ngFor="let sensory_perception of sensory_perceptions[0]" [value]="sensory_perception">
-        {{sensory_perception.value}}</option>
+<div class="risk">
+  <h6 class="riskassessmenttitle" style="display: inline-block">Risk Assessment</h6>
+  <p class="text">Select the appropriate risk assessment scale and then the appropriate value from the
+    respective dropdown menus
+  </p>
+  <span class="scale" style="display: inline-block">
+    <label class="scalelabel">Scale</label>
+    <select class="select">
+      <option value="volvo">Braden Scale</option>
+      <option value="saab">Waterlow</option>
+      <option value="opel">Norton</option>
     </select>
-    <br>
-    <label class="label">Mobility</label>
-    <select class="input" name="mobility" [(ngModel)]="data.risk_assessment.mobility">
-      <option *ngFor="let mobility of mobilitys[0]" [value]="mobility">{{mobility.value}}</option>
-    </select>
-    <br>
-  </div>
-  <div class="row1" style="display:flex;  margin-bottom: 20px">
-    <label class="label">Moisture</label>
-    <select class="input" name="moisture" [(ngModel)]="data.risk_assessment.moisture">
-      <option *ngFor="let moisture of moistures[0]" [value]="moisture">{{moisture.value}}</option>
-    </select>
-    <label class="label">Nutrition</label>
-    <select class="input" name="nutrition" [(ngModel)]="data.risk_assessment.nutrition">
-      <option *ngFor="let nutrition of nutritions[0]" [value]="nutrition">{{nutrition.value}}</option>
-    </select>
-  </div>
-  <div class="row2" style="display:flex; margin-bottom: 20px">
-    <label class="label">Activity</label>
-    <select class="input" name="activity" [(ngModel)]="data.risk_assessment.activity">
-      <option *ngFor="let activity of activities[0]" [value]="activity">{{activity.value}}</option>
-    </select>
-    <label class="label">Friction/shear</label>
-    <select class="input" name="friction" [(ngModel)]="data.risk_assessment.friction_shear">
-      <option *ngFor="let friction of frictions[0]" [value]="friction">{{friction.value}}</option>
-    </select>
-  </div>
-</form>
-<div class="others">
-  <h6 class="otherdetailstitle">Other Factors</h6>
-  <form class="otherdetails">
-    <div class="row" style="display: flex">
-      <input type="checkbox" [(ngModel)]="data.other_factors.previous_pressure_injury" name="name" placeholder="name"
-        class="box">
-      <label class="input">Previous Pressure Injury</label> <br>
-      <input type="checkbox" [(ngModel)]="data.other_factors.kidney_disease" name="name" placeholder="name"
-        class="box">
-      <label class="input">Kidney Disease</label> <br>
-      <input type="checkbox" [(ngModel)]="data.other_factors.anemia_or_haemoglobinopathies" name="name"
-        placeholder="name" class="box">
-      <label class="input">Anemia or Haemoglobinopathies</label> <br>
+  </span>
+  <form class="riskassessment">
+    <div class="row" style="display:flex; margin-bottom: 20px">
+      <label class="label">Sensory Perception</label>
+      <select class="input" name="sensory_perception" [(ngModel)]="data.risk_assessment.sensory_perception">
+        <option *ngFor="let sensory_perception of sensory_perceptions[0]" [value]="sensory_perception">
+          {{sensory_perception.value}}</option>
+      </select>
+      <br>
+      <label class="label">Mobility</label>
+      <select class="input" name="mobility" [(ngModel)]="data.risk_assessment.mobility">
+        <option *ngFor="let mobility of mobilitys[0]" [value]="mobility">{{mobility.value}}</option>
+      </select>
+      <br>
     </div>
-    <div class="row1" style="display: flex">
-      <input type="checkbox" [(ngModel)]="data.other_factors.diabetes" name="name" placeholder="name" class="box">
-      <label class="input">Diabetes</label> <br>
-      <input type="checkbox" [(ngModel)]="data.other_factors.respiratory_condition" name="name" placeholder="name"
-        class="box">
-      <label class="input">Respiratory Condition</label> <br>
-      <input type="checkbox" [(ngModel)]="data.other_factors.bone_infections" name="name" placeholder="name"
-        class="box">
-      <label class="input">Bone Infections</label> <br>
+    <div class="row1" style="display:flex;  margin-bottom: 20px">
+      <label class="label">Moisture</label>
+      <select class="input" name="moisture" [(ngModel)]="data.risk_assessment.moisture">
+        <option *ngFor="let moisture of moistures[0]" [value]="moisture">{{moisture.value}}</option>
+      </select>
+      <label class="label">Nutrition</label>
+      <select class="input" name="nutrition" [(ngModel)]="data.risk_assessment.nutrition">
+        <option *ngFor="let nutrition of nutritions[0]" [value]="nutrition">{{nutrition.value}}</option>
+      </select>
     </div>
-    <div class="row1" style="display: flex">
-      <input type="checkbox" [(ngModel)]="data.other_factors.smoker" name="name" placeholder="name" class="box">
-      <label class="input">Smoker</label> <br>
-      <input type="checkbox" [(ngModel)]="data.other_factors.urogenital_condition" name="name" placeholder="name"
-        class="box">
-      <label class="input">Urogenital Condition</label> <br>
-      <input type="checkbox" [(ngModel)]="data.other_factors.paralysis" name="name" placeholder="name" class="box">
-      <label class="input">Paralysis</label> <br>
-    </div>
-    <div class="row1" style="display: flex">
-      <input type="checkbox" [(ngModel)]="data.other_factors.cardiovascular_disease" name="name" placeholder="name"
-        class="box">
-      <label class="input">Cardiovascular Disease</label> <br>
-      <input type="checkbox" [(ngModel)]="data.other_factors.sepsis" name="name" placeholder="name" class="box">
-      <label class="input">Sepsis</label> <br>
-      <input type="checkbox" [(ngModel)]="data.other_factors.muscular_dystrophy_myopathies" name="name"
-        placeholder="name" class="box">
-      <label class="input">Muscular Dystrophy Myopathies</label> <br>
-    </div>
-    <div class="row1" style="display: flex">
-      <input type="checkbox" [(ngModel)]="data.other_factors.anti_coagulants" name="name" placeholder="name"
-        class="box">
-      <label class="input">Anti Coagulants</label> <br>
-      <input type="checkbox" [(ngModel)]="data.other_factors.pneumonia" name="name" placeholder="name" class="box">
-      <label class="input">Pneumonia</label> <br>
-      <input type="checkbox" [(ngModel)]="data.other_factors.hip_or_knee_surgery" name="name" placeholder="name"
-        class="box">
-      <label class="input">Hip or Knee Surgery</label> <br>
+    <div class="row2" style="display:flex; margin-bottom: 20px">
+      <label class="label">Activity</label>
+      <select class="input" name="activity" [(ngModel)]="data.risk_assessment.activity">
+        <option *ngFor="let activity of activities[0]" [value]="activity">{{activity.value}}</option>
+      </select>
+      <label class="label">Friction/shear</label>
+      <select class="input" name="friction" [(ngModel)]="data.risk_assessment.friction_shear">
+        <option *ngFor="let friction of frictions[0]" [value]="friction">{{friction.value}}</option>
+      </select>
     </div>
   </form>
+  <div class="others">
+    <h6 class="otherdetailstitle">Other Factors</h6>
+    <form class="otherdetails">
+      <div class="row" style="display: flex">
+        <input type="checkbox" [(ngModel)]="data.other_factors.previous_pressure_injury" name="name" placeholder="name"
+          class="box">
+        <label class="input">Previous Pressure Injury</label> <br>
+        <input type="checkbox" [(ngModel)]="data.other_factors.kidney_disease" name="name" placeholder="name"
+          class="box">
+        <label class="input">Kidney Disease</label> <br>
+        <input type="checkbox" [(ngModel)]="data.other_factors.anemia_or_haemoglobinopathies" name="name"
+          placeholder="name" class="box">
+        <label class="input">Anemia or Haemoglobinopathies</label> <br>
+      </div>
+      <div class="row1" style="display: flex">
+        <input type="checkbox" [(ngModel)]="data.other_factors.diabetes" name="name" placeholder="name" class="box">
+        <label class="input">Diabetes</label> <br>
+        <input type="checkbox" [(ngModel)]="data.other_factors.respiratory_condition" name="name" placeholder="name"
+          class="box">
+        <label class="input">Respiratory Condition</label> <br>
+        <input type="checkbox" [(ngModel)]="data.other_factors.bone_infections" name="name" placeholder="name"
+          class="box">
+        <label class="input">Bone Infections</label> <br>
+      </div>
+      <div class="row1" style="display: flex">
+        <input type="checkbox" [(ngModel)]="data.other_factors.smoker" name="name" placeholder="name" class="box">
+        <label class="input">Smoker</label> <br>
+        <input type="checkbox" [(ngModel)]="data.other_factors.urogenital_condition" name="name" placeholder="name"
+          class="box">
+        <label class="input">Urogenital Condition</label> <br>
+        <input type="checkbox" [(ngModel)]="data.other_factors.paralysis" name="name" placeholder="name" class="box">
+        <label class="input">Paralysis</label> <br>
+      </div>
+      <div class="row1" style="display: flex">
+        <input type="checkbox" [(ngModel)]="data.other_factors.cardiovascular_disease" name="name" placeholder="name"
+          class="box">
+        <label class="input">Cardiovascular Disease</label> <br>
+        <input type="checkbox" [(ngModel)]="data.other_factors.sepsis" name="name" placeholder="name" class="box">
+        <label class="input">Sepsis</label> <br>
+        <input type="checkbox" [(ngModel)]="data.other_factors.muscular_dystrophy_myopathies" name="name"
+          placeholder="name" class="box">
+        <label class="input">Muscular Dystrophy Myopathies</label> <br>
+      </div>
+      <div class="row1" style="display: flex">
+        <input type="checkbox" [(ngModel)]="data.other_factors.anti_coagulants" name="name" placeholder="name"
+          class="box">
+        <label class="input">Anti Coagulants</label> <br>
+        <input type="checkbox" [(ngModel)]="data.other_factors.pneumonia" name="name" placeholder="name" class="box">
+        <label class="input">Pneumonia</label> <br>
+        <input type="checkbox" [(ngModel)]="data.other_factors.hip_or_knee_surgery" name="name" placeholder="name"
+          class="box">
+        <label class="input">Hip or Knee Surgery</label> <br>
+      </div>
+    </form>
+  </div>

@@ -97,8 +97,10 @@ export class RegisterPage implements OnInit {
       this.validIDToast();
       localStorage.setItem('dataSource',JSON.stringify(this.allUser));
       this.router.navigate(['home']);
+    }, (errorResponse) => {
+      this.invalidIDToast();
     })
-    if(!this.allUser) this.invalidIDToast();
+   // if(!this.allUser) this.invalidIDToast();
   };
 
 
