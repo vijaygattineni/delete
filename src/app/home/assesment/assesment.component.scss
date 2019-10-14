@@ -41,3 +41,53 @@
     width: 61px;
   }
 }
+.assesment-history-heading {
+    font-size: 24px;
+    font-weight: 100;
+}
+
+.assesment-body {
+    font-weight: 100;
+    .drop-down-heading {
+        font-size: 18px;
+        font-weight: 100;   
+    }
+    .drop-down-value {
+        font-size: 16px;
+        font-weight: 100;
+    }
+    .assesment-list {
+        ion-item {
+            font-size: 14px;
+            font-weight: 100;
+        }
+    }
+    ion-header {
+        padding: 10px;
+        background-color: whitesmoke;
+        margin-bottom: 5px;
+    }
+    .assesment-header {
+        font-size: 18px;
+        font-weight: 400;
+        padding-bottom: 10px;
+    }
+    .date-label {
+        font-size: 14px;
+    }
+    .time-stamp {
+        font-size: 16px;
+        padding-bottom: 10px;
+    }
+    .active {
+        font-weight: 400;
+        font-size: 16px;
+    }
+    table {
+        margin: 0px 20px 0px 20px;
+        td {
+            width: 50%;
+            padding: 5px;
+        }
+    }
+}

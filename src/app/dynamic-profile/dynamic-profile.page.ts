@@ -25,7 +25,7 @@ export class DynamicProfilePage implements OnInit {
   constructor(public toastController: ToastController) {
     //d3 = d3;
 
-    const ws = new $WebSocket('ws://localhost:8080');
+    const ws = new $WebSocket('ws://192.168.239.95:8080');
     ws.send('hello');
     // set received message callback
     ws.onMessage(
@@ -80,7 +80,7 @@ export class DynamicProfilePage implements OnInit {
       height = 400 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
-    document.getElementById("wrapper").innerHTML = '';
+    document.getElementById('wrapper').innerHTML = '';
 
     var svg = d3.select('#wrapper')
       .append('svg')

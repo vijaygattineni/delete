@@ -1,4 +1,4 @@
-<ion-row class="row">
+<!-- <ion-row class="row">
 <ion-label class="newrecordtitle">New Assessment Records</ion-label>
 </ion-row>
 <ion-col size='8' class="assessmenttabs">
@@ -12,4 +12,207 @@
   <div *ngIf="this.selectedTab === 'risk-assessment'">
     <app-risk-assessment></app-risk-assessment>
   </div>
-  </ion-col>
+  </ion-col> -->
+<ion-grid>
+  <ion-row>
+    <ion-col style="padding-top: 15px;">
+      <span class="assesment-history-heading">Assessment History</span>
+    </ion-col>
+    <ion-col style="text-align: right">
+      <ion-button type="submit" (click)="submit()">New Assessment</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<ion-grid class="assesment-body">
+  <ion-row>
+    <ion-col size="4">
+      <ion-header (click)="toggleList('risk')">
+        <span class="drop-down-heading">Risk Assessment</span>
+        <ion-icon *ngIf="!showRiskItems" style="float:right" ios="ios-arrow-dropdown" md="md-arrow-dropdown"></ion-icon>
+        <ion-icon *ngIf="showRiskItems" style="float:right" ios="ios-arrow-dropleft" md="md-arrow-dropleft"></ion-icon>
+      </ion-header>
+      <ion-list class="assesment-list" *ngIf="showRiskItems">
+        <ion-item *ngFor="let assesment of this.riskAssesmentData" (click)="onAssesmentSelection('risk',assesment)">
+          <div class="item-content" [ngClass]="{'active' : assesment == this.selectedAssesmentData}">
+            {{assesment.created_date}} Risk Assessment
+          </div>
+        </ion-item>
+      </ion-list>
+      <ion-header (click)="toggleList('skin')">
+        <span class="drop-down-heading">Skin Assessment</span>
+        <ion-icon *ngIf="!showSkinItems" style="float:right" ios="ios-arrow-dropdown" md="md-arrow-dropdown"></ion-icon>
+        <ion-icon *ngIf="showSkinItems" style="float:right" ios="ios-arrow-dropleft" md="md-arrow-dropleft"></ion-icon>
+      </ion-header>
+      <ion-list class="assesment-list" *ngIf="showSkinItems">
+        <ion-item *ngFor="let assesment of this.skinAssesmentData"  (click)="onAssesmentSelection('skin', assesment)">
+          <div class="item-content" [ngClass]="{'active' : assesment == this.selectedAssesmentData}">
+            {{assesment.created_date}} Skin Assessment
+          </div>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+    <ion-col size="8" style="padding: 0px 30px 0px 30px;">
+      <div *ngIf="selectedAssesmentType && selectedAssesmentType.length > 0">
+        <div *ngIf="selectedAssesmentType === 'risk'" class="assessment-details">
+          <div class="assesment-header">
+            Risk Assessment
+          </div>
+          <div class="date-label">
+            Date assessed
+          </div>
+          <div class="time-stamp">
+            {{selectedAssesmentData.created_date}}
+          </div>
+          <table style="width:100%;margin: 25px;">
+            <tr>
+              <td>Sensory perception</td>
+              <td>{{selectedAssesmentData.sensory_perception}}</td>
+            </tr>
+            <tr>
+              <td>Moisture</td>
+              <td>{{selectedAssesmentData.moisture}}</td>
+            </tr>
+            <tr>
+              <td>Activity</td>
+              <td>{{selectedAssesmentData.activity}}</td>
+            </tr>
+            <tr>
+              <td>Mobility</td>
+              <td>{{selectedAssesmentData.mobility}}</td>
+            </tr>
+            <tr>
+              <td>Nutrition</td>
+              <td>{{selectedAssesmentData.nutrition}}</td>
+            </tr>
+            <tr>
+              <td>Friction / Shear</td>
+              <td>{{selectedAssesmentData.friction}}</td>
+            </tr>
+          </table>
+          <table style="width:100%;margin: 25px;">
+            <tr>
+              <td style="font-weight:400">Other factors</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Pressure injury</td>
+              <td>{{selectedAssesmentData.previous_pressure_injury}}</td>
+            </tr>
+            <tr>
+              <td>Diabetic</td>
+              <td>{{selectedAssesmentData.diabetic}}</td>
+            </tr>
+            <tr>
+              <td>Smoker</td>
+              <td>{{selectedAssesmentData.smoker}}</td>
+            </tr>
+            <tr>
+              <td>Cardiovascular disease</td>
+              <td>{{selectedAssesmentData.cardiovascular_disease}}</td>
+            </tr>
+            <tr>
+              <td>Anti cogulant</td>
+              <td>{{selectedAssesmentData.anti_cogulants}}</td>
+            </tr>
+            <tr>
+              <td>Kideny Disease</td>
+              <td>{{selectedAssesmentData.kideny_disease}}</td>
+            </tr>
+            <tr>
+            <tr>
+              <td>Respiratory</td>
+              <td>{{selectedAssesmentData.respiratory_condition}}</td>
+            </tr>
+            <tr>
+              <td>Anti cogulant</td>
+              <td>{{selectedAssesmentData.anti_cogulants}}</td>
+            </tr>
+            <tr>
+              <td>Urogenetal</td>
+              <td>{{selectedAssesmentData.urogential_condition}}</td>
+            </tr>
+            <tr>
+              <td>Sepsis</td>
+              <td>{{selectedAssesmentData.sepsis}}</td>
+            </tr>
+          </table>
+        </div>
+        <div *ngIf="selectedAssesmentType === 'skin'">
+          <div class="assesment-header">
+            Skin Assesment
+          </div>
+          <ion-row>
+            <ion-col size="6">
+              <div class="date-label">
+                Date assesed
+              </div>
+              <div class="time-stamp">
+                {{selectedAssesmentData.created_date}}
+              </div>
+            </ion-col>
+
+            <ion-col size="6">
+              <div class="label">
+                No of wounds
+              </div>
+              <div class="time-stamp">
+                2
+              </div>
+            </ion-col>
+          </ion-row>
+
+          <table style="width:100%;border-bottom: solid 1px lightgray;" *ngFor="let assesment of this.selectedAssesmentData.assesments">
+            <tr>
+              <td style="font-weight:400">Assessment No {{assesment.assesment_no}}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Wound</td>
+              <td><div *ngFor="let wound of assesment.wounds">{{wound}}</div></td>
+            </tr>
+            <tr>
+              <td>Redness</td>
+              <td>{{assesment.redness}}</td>
+            </tr>
+            <tr>
+              <td>Infection</td>
+              <td>{{assesment.infection}}</td>
+            </tr>
+            <tr>
+              <td>Odour</td>
+              <td>{{assesment.odour}}</td>
+            </tr>
+            <tr>
+              <td>Pain</td>
+              <td>{{assesment.pain}}</td>
+            </tr>
+            <tr>
+              <td>Moisture type</td>
+              <td>{{assesment.moisture_type}}</td>
+            </tr>
+            <tr>
+              <td>Edges</td>
+              <td>{{assesment.edges}}</td>
+            </tr>
+            <tr>
+              <td>Measurement</td>
+              <td>
+                <div>Length: {{assesment.measurement_length}}</div>
+                <div>Width: {{assesment.measurement_width}}</div>
+                <div>Depth: {{assesment.measurement_depth}}</div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div *ngIf="selectedAssesmentType  === undefined" style="text-align:center;padding-top:100px">
+        Please select an Assessment to view details.
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+<!-- <app-risk-assessment></app-risk-assessment> -->

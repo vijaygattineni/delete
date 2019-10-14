@@ -40,7 +40,7 @@ export class PressureProfileComponent implements OnInit {
       created_at: '1387233720',
       updated_at: '1387237320'
       }];
-
+//(+new Date('2019-09-26T19:49:46.482297Z')/1000).toFixed(0
     let colors = ['#0066AE', '#0066AE', '#0066AE', '#0066AE', '#0066AE'];
 
     const timeFormat = (unixTimestamp: any) => {
