@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { RiskMonitorService } from './risk-monitor.service';
 
 declare let d3: any;
@@ -9,7 +9,7 @@ declare let d3: any;
   styleUrls: ['./risk-monitor.component.scss', '../../../../node_modules/nvd3/build/nv.d3.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class RiskMonitorComponent implements OnInit {
+export class RiskMonitorComponent implements OnInit, OnDestroy {
 
   options;
   data;
@@ -24,6 +24,10 @@ export class RiskMonitorComponent implements OnInit {
   linedata: any;
 
   constructor(private riskmonitorService: RiskMonitorService) { }
+
+  ngOnDestroy() {
+    d3.select('.nvtooltip').remove();
+  }
 
   ngOnInit() {
     this.riskDataInProgress=true;

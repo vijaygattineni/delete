@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 declare let d3: any;
 import { HomeService } from '../home.service';
 
@@ -8,7 +8,7 @@ import { HomeService } from '../home.service';
   styleUrls: ['./pressure-profile.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class PressureProfileComponent implements OnInit {
+export class PressureProfileComponent implements OnInit, OnDestroy  {
 
   profileChartLoading: boolean;
   patientDetails: any;
@@ -47,8 +47,8 @@ export class PressureProfileComponent implements OnInit {
       let date = new Date(unixTimestamp * 1000);
       let hours = date.getHours();
       let minutes = '0' + date.getMinutes();
-      let seconds = '0' + date.getSeconds();
-      let formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+      // let seconds = '0' + date.getSeconds();
+      let formattedTime = hours + ':' + minutes.substr(-2);
       return formattedTime;
     };
 
@@ -120,6 +120,7 @@ export class PressureProfileComponent implements OnInit {
       .attr('height', 19)
       .attr({
         'x': function (d) {
+          console.log('-->', d.created_at);
           return xscale(d.created_at);
         },
         'y': function (d, i) {
@@ -152,6 +153,9 @@ export class PressureProfileComponent implements OnInit {
       });
   }
 
+  ngOnDestroy() {
+    d3.select('.pressure-tooltip').remove();
+  }
 
   ngOnInit() {
     this.profileChartLoading = true;
@@ -160,6 +164,7 @@ export class PressureProfileComponent implements OnInit {
       .subscribe((response) => {
         this.profileChartLoading = false;
         this.pressureChartData = response;
+        this.drawChart();
         if (this.pressureChartData.length > 0) {
           this.drawChart();
         } else {
