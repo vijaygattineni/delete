@@ -1,21 +1,22 @@
-#xaxis text,
-#yaxis text {
-  font-size: 12px;
-}
-
-path {
-  fill: none;
-  stroke: #aaafaf;
-  shape-rendering: crispEdges;
-  stroke-width: 1px;
-}
-
 #wrapper {
   margin-top: 50px;
+
   .tick {
     line {
       stroke: black;
     }
+  }
+
+  #xaxis text,
+  #yaxis text {
+    font-size: 12px;
+  }
+
+  path {
+    fill: none;
+    stroke: #aaafaf;
+    shape-rendering: crispEdges;
+    stroke-width: 1px;
   }
 }
 
@@ -41,6 +42,7 @@ path {
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 4px;
 }
+
 .chart-loader {
   margin-left: 50%;
   padding-top: 100px;
