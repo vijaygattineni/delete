@@ -90,9 +90,8 @@ export class DynamicProfilePage implements OnInit {
       .attr('transform',
         'translate(' + margin.left + ',' + margin.top + ')');
 
-    var myGroups = ['1', '2', '3', '4', '5'];
-    var myVars = ['1', '2', '3', '4', '5'];
-
+    var myGroups = ['1', '2', '3', '4', '5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30'];
+    var myVars = ['1', '2', '3', '4', '5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30'];
 
 
     // Build X scales and axis:
@@ -102,14 +101,14 @@ export class DynamicProfilePage implements OnInit {
 
     var myColor = d3.scale.linear()
       .range(['red', 'black'])
-      .domain([1, 5])
+      .domain([1, 9])
 
     var test = this.message.split('');
 
     var data = [];
     var ind = 0;
-    for (let i = 1; i <= 5; i++) {
-      for (let j = 1; j <= 5; j++) {
+    for (let i = 1; i <= 30; i++) {
+      for (let j = 1; j <= 30; j++) {
         data.push({ 'group': i, 'variable': j, 'value': test[ind] })
         ind++;
       }
