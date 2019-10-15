@@ -51,19 +51,21 @@
     </form>
   </div>
   <div class="risk">
-    <h6 class="riskassessmenttitle" style="display: inline-block">Risk Assessment</h6>
-    <p class="text">Select the appropriate risk assessment scale and then the appropriate value from the
-      respective dropdown menus
-    </p>
-    <span class="scale" style="display: inline-block">
+    <ion-row>
+<ion-col><h6 class="riskassessmenttitle" style="display: inline-block">Risk Assessment</h6></ion-col>
+  <ion-col> <span class="scale" style="display: inline-block">
       <label class="scalelabel">Scale</label>
       <select class="select">
         <option value="volvo">Braden Scale</option>
         <option value="saab">Waterlow</option>
         <option value="opel">Norton</option>
       </select>
-    </span>
-    <form class="riskassessment">
+    </span></ion-col>  
+</ion-row>
+   <p class="text">Select the appropriate risk assessment scale and then the appropriate value from the
+      respective dropdown menus
+    </p>
+   <form class="riskassessment">
       <ion-row class="row" style="display:flex; margin-bottom: 20px">
         <ion-col><label class="label">Sensory Perception</label></ion-col>
         <ion-col><select class="input" name="sensory_perception" [(ngModel)]="data.risk_assessment.sensory_perception">

@@ -19,7 +19,7 @@
     margin-top: -8px;
   }
   .scale{
-    margin-left:69%;
+    margin-left:80%;
     .scalelabel{
       font-size: 12px;
       margin-right:  10px;
@@ -53,6 +53,11 @@
     }
     .row1 {
       margin-top: 2%;
+    }
+    ion-checkbox {
+      min-width: 16px;
+      height: 16px;
+      margin-right: 1%;
     }
   }
   

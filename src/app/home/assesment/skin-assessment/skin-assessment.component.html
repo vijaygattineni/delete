@@ -99,11 +99,11 @@
       <ion-col size="9"><input type= "textbox"  class="inputbox" [(ngModel)]="data.assessments[0].wound_area"></ion-col>
   </ion-row>
     <ion-row>
-      <ion-button  color="light" (click)="postSkinAssessment()" class="add" style="text-transform: none;"> +Add Another Wound</ion-button>
+      <ion-button  color="light" (click)="addAnotherWound()" class="add" style="text-transform: none;"> +Add Another Wound</ion-button>
         <!-- <a href="#" class="add">Add Another Wounds</a> -->
     </ion-row>
     <ion-row>
-        <ion-button fill= "outline" class="cancel">Cancel</ion-button>
+        <ion-button fill= "outline" class="cancel" (click)="clearData()">Cancel</ion-button>
         <ion-button fill= "outline" class="save" (click)="postSkinAssessment()">Save</ion-button>
     </ion-row>
 </ion-grid>

@@ -111,8 +111,8 @@ export class RiskMonitorComponent implements OnInit {
     else this.color = 'yellow';
   }
   getRiskmonitorDetails(id: string) {
-    this.riskDataInProgress = false;
     this.riskmonitorService.getRiskmonitorDetails(id).subscribe((result) => {
+      this.riskDataInProgress = false;
       this.riskData = result;
       console.log('graph',this.riskData)
       if(this.riskData.length === 0){
