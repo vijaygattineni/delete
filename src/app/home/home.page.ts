@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 import { $WebSocket } from 'angular2-websocket/angular2-websocket';
 import { HomeService } from '../home/home.service';
-import { ToastService } from '../shared/toast.service';
 
 @Component({
   selector: 'app-home',
@@ -16,8 +16,9 @@ export class HomePage implements OnInit {
   webSocket: any;
   monitor: boolean;
   patientDetails: any;
+  patientImage: any;
 
-  constructor(public toast: ToastService, public homeService: HomeService) {
+  constructor(public toastController: ToastController, public homeService: HomeService) {
     if (localStorage.getItem('dataSource')) {
       this.patientDetails = JSON.parse(localStorage.getItem('dataSource'));
     }
@@ -27,8 +28,36 @@ export class HomePage implements OnInit {
     this.selectedTab = selectedObj.name;
   }
 
+  onErrorCB = async () => {
+    const toast = await this.toastController.create({
+      message: 'Error in connection. Unable to connect to device.',
+      duration: 2000,
+      color: 'danger'
+    });
+    toast.present();
+  }
+
+  onErrorInTransferCB = async () => {
+    const toast = await this.toastController.create({
+      message: 'Error in data transfer to DB',
+      duration: 2000,
+      color: 'danger'
+    });
+    toast.present();
+  }
+
   ngOnChange(val: boolean) {
     this.monitor = val;
+  }
+
+  onConnectionOpenCB = async () => {
+    this.hasWebSocketConnection = true;
+    const toast = await this.toastController.create({
+      message: 'Connected to device',
+      duration: 2000,
+      color: 'success'
+    });
+    toast.present();
   }
 
   connectToDevice() {
@@ -39,14 +68,21 @@ export class HomePage implements OnInit {
           this.homeService.postDeviceData(this.patientDetails.id, msg.data).subscribe((response) => {
             console.log(response);
           }, (errorResponse) => {
-            this.toast.toastPopup('Error in data transfer to DB.', 200, 'danger');
+            this.onErrorInTransferCB();
           });
         }
       },
       { autoApply: false }
     );
-    this.webSocket.onError(this.toast.toastPopup('Error in connection. Unable to connect to device.', 200, 'danger'));
-    this.webSocket.onOpen(this.toast.toastPopup('Connected to device', 200, 'success'));
+    this.webSocket.onError(this.onErrorCB);
+    this.webSocket.onOpen(this.onConnectionOpenCB);
+  }
+
+  fetchPatientPressureImage() {
+    this.homeService.getPatientImage(this.patientDetails.id).subscribe(
+    (response) => { this.patientImage = response; },
+    (errorResponse) => {}
+    );
   }
 
   ngOnInit() {

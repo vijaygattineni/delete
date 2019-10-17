@@ -55,10 +55,14 @@ export class PressureProfileComponent implements OnInit, OnDestroy {
       .domain([0, pressureData.length])
       .range(colors);
 
+    let ele = document.getElementById("wrapper"),
+    eleStyle = window.getComputedStyle(ele);
+    let eleWidth = eleStyle.width;
+
     let canvas = d3.select('#wrapper')
       .append('svg')
       .attr({
-        'width': 800,
+        'width': eleWidth,
         'height': 450
       });
 
@@ -150,6 +154,25 @@ export class PressureProfileComponent implements OnInit, OnDestroy {
     this.homeService.getCurrentRiskRecommendations(this.patientDetails.id)
       .subscribe((response) => {
         this.profileChartLoading = false;
+        response = [{
+          risk_area: 'Right Fetus',
+          created_at: '2019-10-16T09:25:00.663684Z',
+          updated_at: '2019-10-16T10:25:00.663715Z',
+        }, {
+          risk_area: 'Right Log',
+          created_at: '2019-10-16T11:25:00.667892Z',
+          updated_at: '2019-10-16T12:25:00.667924Z',
+        },
+        {
+          risk_area: 'Left Fetus',
+          created_at: '2019-10-16T12:25:00.667892Z',
+          updated_at: '2019-10-16T13:25:00.667892Z',
+        }, {
+          risk_area: 'Spine',
+          created_at: '2019-10-16T15:25:00.667892Z',
+          updated_at: '2019-10-16T19:25:00.667892Z',
+        }
+        ];
         response.forEach(element => {
           element.created_at = this.formatISOtoUnix(element.created_at);
           element.updated_at = this.formatISOtoUnix(element.updated_at);

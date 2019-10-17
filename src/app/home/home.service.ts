@@ -44,7 +44,11 @@ export class HomeService {
     let url = environment.prefix + 'device';
     console.log(body);
     return this.http.post(url, body);
+  }
 
+  getPatientImage(id): Observable<any> {
+    let url = '/pressure-image?patient=' + id;
+    return this.http.get(url);
   }
 
 }
