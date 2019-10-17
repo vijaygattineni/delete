@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
-import { webSocket } from 'rxjs/webSocket';
 declare let d3: any;
-import { $WebSocket, WebSocketSendMode } from 'angular2-websocket/angular2-websocket';
+import { $WebSocket } from 'angular2-websocket/angular2-websocket';
 
 export class Message {
   constructor(

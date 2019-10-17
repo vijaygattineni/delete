@@ -160,11 +160,11 @@ export class PressureProfileComponent implements OnInit, OnDestroy  {
   ngOnInit() {
     this.profileChartLoading = true;
     this.noData = false;
+    // this.drawChart();
     this.homeService.getCurrentRiskRecommendations(this.patientDetails.id)
       .subscribe((response) => {
         this.profileChartLoading = false;
         this.pressureChartData = response;
-        this.drawChart();
         if (this.pressureChartData.length > 0) {
           this.drawChart();
         } else {

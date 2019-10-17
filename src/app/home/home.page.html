@@ -23,7 +23,7 @@
 
         <!-- TAB BODY -->
         <div *ngIf="this.selectedTab === 'dashboard'">
-          <app-dashboard></app-dashboard>
+          <app-dashboard [monitor]="monitor" (monitorChange)="ngOnChange($event)" [hasWebSocketConnection]="hasWebSocketConnection" ></app-dashboard>
         </div>
         <div *ngIf="this.selectedTab === 'risk_monitor'">
           <app-risk-monitor></app-risk-monitor>
@@ -31,7 +31,7 @@
         <div *ngIf="this.selectedTab === 'pressure_profile'">
           <app-pressure-profile></app-pressure-profile>
         </div>
-        <div *ngIf="this.selectedTab === 'assesment'">
+        <div *ngIf="this.selectedTab === 'assessment'">
           <app-assesment></app-assesment>
         </div>
 

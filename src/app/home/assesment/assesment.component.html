@@ -1,12 +1,12 @@
 <ion-row class="row" *ngIf="showCreateAssessment">
   <ion-row style="width:100%">
-      <ion-col style="padding-top: 15px;">
-        <span class="assesment-history-heading">New Assessment Records</span>
-      </ion-col>
-      <ion-col style="text-align: right">
-        <ion-button type="submit" (click)="onShowHistory()">Assessment History</ion-button>
-      </ion-col>
-    </ion-row>
+    <ion-col style="padding-top: 15px;">
+      <span class="assesment-history-heading">New Assessment Records</span>
+    </ion-col>
+    <ion-col style="text-align: right">
+      <ion-button type="submit" (click)="onShowHistory()">Assessment History</ion-button>
+    </ion-col>
+  </ion-row>
 </ion-row>
 <ion-col size='8' class="assessmenttabs" *ngIf="showCreateAssessment">
   <ul>
@@ -43,10 +43,13 @@
         <ion-icon *ngIf="showRiskItems" style="float:right" ios="ios-arrow-dropleft" md="md-arrow-dropleft"></ion-icon>
       </ion-header>
       <ion-list class="assesment-list" *ngIf="showRiskItems">
-        <ion-item *ngFor="let assesment of this.riskAssessmentData" (click)="onAssesmentSelection('risk',assesment)">
+        <ion-item *ngFor="let assesment of this.riskAssessmentData" (click)="onAssessmentSelection('risk',assesment)">
           <div class="item-content" [ngClass]="{'active' : assesment == this.selectedAssessmentData}">
-            {{assesment.created_date}} Risk Assessment
+            {{assesment.created_at | date:'short'}} 
           </div>
+        </ion-item>
+        <ion-item *ngIf="this.riskAssessmentData.length === 0 ">
+          No Assessment Available
         </ion-item>
       </ion-list>
       <ion-header (click)="toggleList('skin')">
@@ -55,10 +58,13 @@
         <ion-icon *ngIf="showSkinItems" style="float:right" ios="ios-arrow-dropleft" md="md-arrow-dropleft"></ion-icon>
       </ion-header>
       <ion-list class="assesment-list" *ngIf="showSkinItems">
-        <ion-item *ngFor="let assesment of this.skinAssessmentData" (click)="onAssesmentSelection('skin', assesment)">
+        <ion-item *ngFor="let assesment of this.skinAssessmentData" (click)="onAssessmentSelection('skin', assesment)">
           <div class="item-content" [ngClass]="{'active' : assesment == this.selectedAssessmentData}">
-            {{assesment.created_date}} Skin Assessment
+            {{assesment.created_at | date:'short'}}
           </div>
+        </ion-item>
+        <ion-item *ngIf="this.skinAssessmentData.length === 0 ">
+          No Assessment Available
         </ion-item>
       </ion-list>
     </ion-col>
@@ -72,32 +78,32 @@
             Date assessed
           </div>
           <div class="time-stamp">
-            {{selectedAssessmentData.created_date}}
+            {{selectedAssessmentData.created_date | date:'short'}}
           </div>
           <table style="width:100%;margin: 25px;">
             <tr>
               <td>Sensory perception</td>
-              <td>{{selectedAssessmentData.sensory_perception}}</td>
+              <td>{{selectedAssessmentData.risk_assessment.sensory_perception}}</td>
             </tr>
             <tr>
               <td>Moisture</td>
-              <td>{{selectedAssessmentData.moisture}}</td>
+              <td>{{selectedAssessmentData.risk_assessment.moisture}}</td>
             </tr>
             <tr>
               <td>Activity</td>
-              <td>{{selectedAssessmentData.activity}}</td>
+              <td>{{selectedAssessmentData.risk_assessment.activity}}</td>
             </tr>
             <tr>
               <td>Mobility</td>
-              <td>{{selectedAssessmentData.mobility}}</td>
+              <td>{{selectedAssessmentData.risk_assessment.mobility}}</td>
             </tr>
             <tr>
               <td>Nutrition</td>
-              <td>{{selectedAssessmentData.nutrition}}</td>
+              <td>{{selectedAssessmentData.risk_assessment.nutrition}}</td>
             </tr>
             <tr>
               <td>Friction / Shear</td>
-              <td>{{selectedAssessmentData.friction}}</td>
+              <td>{{selectedAssessmentData.risk_assessment.friction}}</td>
             </tr>
           </table>
           <table style="width:100%;margin: 25px;">
@@ -107,44 +113,65 @@
             </tr>
             <tr>
               <td>Pressure injury</td>
-              <td>{{selectedAssessmentData.previous_pressure_injury}}</td>
+              <td>{{selectedAssessmentData.other_factors.previous_pressure_injury}}</td>
             </tr>
             <tr>
               <td>Diabetic</td>
-              <td>{{selectedAssessmentData.diabetic}}</td>
+              <td>{{selectedAssessmentData.other_factors.diabetic}}</td>
             </tr>
             <tr>
               <td>Smoker</td>
-              <td>{{selectedAssessmentData.smoker}}</td>
+              <td>{{selectedAssessmentData.other_factors.smoker}}</td>
             </tr>
             <tr>
               <td>Cardiovascular disease</td>
-              <td>{{selectedAssessmentData.cardiovascular_disease}}</td>
-            </tr>
-            <tr>
-              <td>Anti cogulant</td>
-              <td>{{selectedAssessmentData.anti_cogulants}}</td>
+              <td>{{selectedAssessmentData.other_factors.cardiovascular_disease}}</td>
             </tr>
             <tr>
               <td>Kideny Disease</td>
-              <td>{{selectedAssessmentData.kideny_disease}}</td>
+              <td>{{selectedAssessmentData.other_factors.kidney_disease}}</td>
             </tr>
             <tr>
             <tr>
               <td>Respiratory</td>
-              <td>{{selectedAssessmentData.respiratory_condition}}</td>
+              <td>{{selectedAssessmentData.other_factors.respiratory_condition}}</td>
             </tr>
             <tr>
               <td>Anti cogulant</td>
-              <td>{{selectedAssessmentData.anti_cogulants}}</td>
+              <td>{{selectedAssessmentData.other_factors.anti_coagulants}}</td>
             </tr>
             <tr>
               <td>Urogenetal</td>
-              <td>{{selectedAssessmentData.urogential_condition}}</td>
+              <td>{{selectedAssessmentData.other_factors.urogenital_condition}}</td>
             </tr>
             <tr>
               <td>Sepsis</td>
-              <td>{{selectedAssessmentData.sepsis}}</td>
+              <td>{{selectedAssessmentData.other_factors.sepsis}}</td>
+            </tr>
+
+            <tr>
+              <td>Pneumonia</td>
+              <td>{{selectedAssessmentData.other_factors.pneumonia}}</td>
+            </tr>
+            <tr>
+              <td>Anemia</td>
+              <td>{{selectedAssessmentData.other_factors.anemia_or_haemoglobinopathies}}</td>
+            </tr>
+            <tr>
+              <td>Bone Infections</td>
+              <td>{{selectedAssessmentData.other_factors.bone_infections}}</td>
+            </tr>
+            <tr>
+              <td>Paralysis</td>
+              <td>{{selectedAssessmentData.other_factors.paralysis}}</td>
+            </tr>
+            <tr>
+              <td>Muscular dystrophy</td>
+              <td>{{selectedAssessmentData.other_factors.muscular_dystrophy_myopathies}}</td>
+            </tr>
+            <tr>
+              <td>Hip or knee surgery</td>
+              <td>{{selectedAssessmentData.other_factors.hip_or_knee_surgery}}</td>
             </tr>
           </table>
         </div>
@@ -158,7 +185,7 @@
                 Date assesed
               </div>
               <div class="time-stamp">
-                {{selectedAssessmentData.created_date}}
+                {{selectedAssessmentData.created_at  | date:'short'}}
               </div>
             </ion-col>
 
@@ -173,15 +200,15 @@
           </ion-row>
 
           <table style="width:100%;border-bottom: solid 1px lightgray;"
-            *ngFor="let assesment of this.selectedAssessmentData.assesments">
+            *ngFor="let assesment of this.selectedAssessmentData.wounds">
             <tr>
-              <td style="font-weight:400">Assessment No {{assesment.assesment_no}}</td>
+              <td style="font-weight:400">Assessment No {{assesment.id}}</td>
               <td></td>
             </tr>
             <tr>
               <td>Wound</td>
               <td>
-                <div *ngFor="let wound of assesment.wounds">{{wound}}</div>
+                <div>{{assesment.wound_area}}</div>
               </td>
             </tr>
             <tr>
@@ -211,9 +238,9 @@
             <tr>
               <td>Measurement</td>
               <td>
-                <div>Length: {{assesment.measurement_length}}</div>
-                <div>Width: {{assesment.measurement_width}}</div>
-                <div>Depth: {{assesment.measurement_depth}}</div>
+                <div>Length: {{assesment.measurements_length}}</div>
+                <div>Width: {{assesment.measurements_width}}</div>
+                <div>Depth: {{assesment.measurements_depth}}</div>
               </td>
             </tr>
           </table>

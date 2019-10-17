@@ -13,11 +13,6 @@
           <div class="action-label">View Full Profile</div>
         </ion-col>
         <ion-col>
-          <!-- <div class="sub-heading-label">Status</div>
-          <div class="value">{{this.patientProfile.status}}</div>
-          <div class="action-label">Stop monitoring</div> -->
-        </ion-col>
-        <ion-col>
           <div class="sub-heading-label">Age</div>
           <div class="value">{{this.patientProfile.age}}</div>
         </ion-col>
@@ -25,6 +20,18 @@
           <div class="sub-heading-label">Bed ID</div>
           <div class="value">{{this.patientProfile.device_id ?  this.patientProfile.device_id : 'NA'}}</div>
         </ion-col>
+        <ion-col *ngIf="hasWebSocketConnection">
+          <div class="sub-heading-label">Monitoring Status</div>
+          <div *ngIf="monitor" class="value">Active</div>
+          <div *ngIf="!monitor" class="value">Inactive</div>
+          <div *ngIf="!monitor" class="action-label" (click)="startMonitor()">Start Monitoring</div>
+          <div *ngIf="monitor" class="action-label" (click)="stopMonitor()">Stop Monitoring</div>
+        </ion-col>
+        <ion-col *ngIf="!hasWebSocketConnection">
+          <div class="sub-heading-label">Monitoring Status</div>
+          <div class="label" style="color:red">No Device Available</div>
+        </ion-col>
+        
       </ion-row>
     </ion-col>
     <ion-col size="2">
