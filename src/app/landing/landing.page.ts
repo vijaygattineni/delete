@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastController } from '@ionic/angular';
 import { HomeService } from '../home/home.service';
 import { Router } from '@angular/router';
+import { ToastService } from '../shared/toast.service';
 
 
 @Component({
@@ -12,16 +12,7 @@ import { Router } from '@angular/router';
 export class LandingPage implements OnInit {
   patientID: string;
 
-  constructor(public toastController: ToastController, public homeService: HomeService, public router: Router) { }
-
-  async invalidIDToast() {
-    const toast = await this.toastController.create({
-      message: 'Please enter a valid patient ID',
-      duration: 2000,
-      color: 'danger'
-    });
-    toast.present();
-  }
+  constructor(public toast: ToastService, public homeService: HomeService, public router: Router) { }
 
   goToDashboard() {
     this.homeService.getPatientInfo(this.patientID)
@@ -29,7 +20,7 @@ export class LandingPage implements OnInit {
         localStorage.setItem('dataSource', JSON.stringify(response));
         this.router.navigate(['home']);
       }, (errorResponse) => {
-        this.invalidIDToast();
+        this.toast.toastPopup('Invalid patient ID. Unable to fetch patient data', 2000, 'danger');
       });
   }
 

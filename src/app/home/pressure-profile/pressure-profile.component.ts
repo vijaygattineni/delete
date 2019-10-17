@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 declare let d3: any;
 import { HomeService } from '../home.service';
+import { ToastService } from '../../shared/toast.service';
 
 @Component({
   selector: 'app-pressure-profile',
@@ -8,39 +9,25 @@ import { HomeService } from '../home.service';
   styleUrls: ['./pressure-profile.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class PressureProfileComponent implements OnInit, OnDestroy  {
+export class PressureProfileComponent implements OnInit, OnDestroy {
 
   profileChartLoading: boolean;
   patientDetails: any;
-  pressureChartData: any;
+  pressureChartData: Array<object>;
   noData: any;
 
-  constructor(public homeService: HomeService) {
+  constructor(public homeService: HomeService, public toast: ToastService) {
     if (localStorage.getItem('dataSource')) {
       this.patientDetails = JSON.parse(localStorage.getItem('dataSource'));
     }
   }
 
+  formatISOtoUnix(iso) {
+    return (Date.parse(iso) / 1000);
+  }
+
   drawChart() {
-    //let pressureData = this.pressureChartData;
-    let pressureData = [{
-      risk_area: 'Right Fetus',
-      created_at: '1387212120',
-      updated_at: '1387215720',
-      }, {
-      risk_area: 'Right Log',
-      created_at: '1387219320',
-      updated_at: '1387222920',
-      }, {
-      risk_area: 'Left Fetus',
-      created_at: '1387226520',
-      updated_at: '1387230120',
-      }, {
-      risk_area: 'Spine',
-      created_at: '1387233720',
-      updated_at: '1387237320'
-      }];
-//(+new Date('2019-09-26T19:49:46.482297Z')/1000).toFixed(0
+    let pressureData = this.pressureChartData;
     let colors = ['#0066AE', '#0066AE', '#0066AE', '#0066AE', '#0066AE'];
 
     const timeFormat = (unixTimestamp: any) => {
@@ -53,7 +40,7 @@ export class PressureProfileComponent implements OnInit, OnDestroy  {
     };
 
     let grid = d3.range(25).map(function (i) {
-      return {x1: 0, y1: 0, x2: 0, y2: 380};
+      return { x1: 0, y1: 0, x2: 0, y2: 380 };
     });
 
     let xscale = d3.scale.linear()
@@ -90,8 +77,8 @@ export class PressureProfileComponent implements OnInit, OnDestroy  {
       .scale(yscale)
       .tickSize(2)
       .tickFormat(function (d, i) {
-        if (pressureData && pressureData[i] && pressureData[i].risk_area) {
-          return pressureData[i].risk_area;
+        if (pressureData && pressureData[i] && pressureData[i]['risk_area']) {
+          return pressureData[i]['risk_area'];
         }
       })
       .tickValues(d3.range(17));
@@ -120,7 +107,6 @@ export class PressureProfileComponent implements OnInit, OnDestroy  {
       .attr('height', 19)
       .attr({
         'x': function (d) {
-          console.log('-->', d.created_at);
           return xscale(d.created_at);
         },
         'y': function (d, i) {
@@ -160,18 +146,22 @@ export class PressureProfileComponent implements OnInit, OnDestroy  {
   ngOnInit() {
     this.profileChartLoading = true;
     this.noData = false;
-    // this.drawChart();
+    this.pressureChartData = [];
     this.homeService.getCurrentRiskRecommendations(this.patientDetails.id)
       .subscribe((response) => {
         this.profileChartLoading = false;
-        this.pressureChartData = response;
+        response.forEach(element => {
+          element.created_at = this.formatISOtoUnix(element.created_at);
+          element.updated_at = this.formatISOtoUnix(element.updated_at);
+          this.pressureChartData.push(element);
+        });
         if (this.pressureChartData.length > 0) {
           this.drawChart();
         } else {
           this.noData = true;
         }
       }, (errorResponse) => {
-        console.log(errorResponse);
+        this.toast.toastPopup('Error while fetching pressure profile data.', 2000, 'danger');
       });
   }
 
