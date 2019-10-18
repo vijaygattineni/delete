@@ -107,8 +107,8 @@
     </ion-col>
   </ion-row>
 
-  <ion-row size="12" class="risk-loader">
-    <ion-spinner name="bubbles" *ngIf="fetchRiskRecommInProgress"></ion-spinner>
-    <span *ngIf="noRiskData">No Data Available</span>
+  <ion-row size="12" class="status-box">
+    <div class="item-center" *ngIf="fetchRiskRecommInProgress"><ion-spinner name="bubbles" ></ion-spinner></div>
+    <div *ngIf="noRiskData" class="item-center">No Data Available.</div>
   </ion-row>
 </ion-grid>

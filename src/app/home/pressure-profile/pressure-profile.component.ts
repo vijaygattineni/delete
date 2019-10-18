@@ -125,7 +125,7 @@ export class PressureProfileComponent implements OnInit, OnDestroy {
       })
       .on('mousemove', function (d) {
         d3.select(this).attr('fill', 'blue').attr('r', 15);
-        tooltip.html(d.risk_area + '<br> Time in ' + timeFormat(d.created_at) + ' <br> ' + ' Time Out ' + timeFormat(d.updated_at))
+        tooltip.html('<table><tr><td>Position:</td><td>'+ d.risk_area +'</td></tr><tr><td>Time In:</td><td>'+timeFormat(d.created_at)+'</td></tr><tr><td>Time Out:</td><td>' + timeFormat(d.updated_at) + '</td></tr></table>')
           .style('opacity', 1)
           .style('left', (d3.event.pageX) + 'px')
           .style('top', (d3.event.pageY - 28) + 'px');

@@ -1,6 +1,7 @@
 <div style="left-margin:50%" id="wrapper">
 </div>
-<ion-row size="12" class="chart-loader">
-    <ion-spinner name="bubbles" *ngIf="profileChartLoading"></ion-spinner>
-    <span *ngIf="noData">No Data</span>
+
+<ion-row size="12" class="status-box">
+    <div class="item-center" *ngIf="profileChartLoading"><ion-spinner name="bubbles" ></ion-spinner></div>
+    <div *ngIf="noData" class="item-center">No Data Available.</div>
 </ion-row>
