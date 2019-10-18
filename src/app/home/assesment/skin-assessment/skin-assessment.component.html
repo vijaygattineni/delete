@@ -1,42 +1,19 @@
 <ion-grid>
   <ion-row>
     <ion-col size="3"><ion-label class="label">Wound</ion-label></ion-col>
-     <ion-col size="9"><input type="radio" class="yes" name="wound" value="yes" (click)="setradio('Yes')" [checked]='true' [(ngModel)]="data.assessments[0].wound">
+     <ion-col size="9"><input type="radio" class="yes" name="wound" value="yes" (click)="setradio('Yes')" [checked]="true" [(ngModel)]="data.assessments[0].wound">
       <ion-label class="text">Yes</ion-label>
       <input type="radio" class="no" name="wound" value="no" (click)="setradio('No')" [(ngModel)]="data.assessments[0].wound">
       <ion-label class="text">No</ion-label>
     </ion-col>
-
-    <!-- <ion-radio-group>
-      <ion-label>Wound</ion-label>
-      <ion-item>
-          <ion-label>Yes</ion-label>
-          <ion-radio slot="start" value="wound"></ion-radio>
-        </ion-item>
-        <ion-item>
-            <ion-label>No</ion-label>
-            <ion-radio slot="start" value="wound"></ion-radio>
-          </ion-item>
-    </ion-radio-group> -->
   </ion-row>
     <ion-row size="12">
         <div *ngIf="isSelected('Yes')" class="box">
-               <ion-checkbox class="name" (click)="addwound('Arterial/pad')" [(ngModel)]=isWoundType1></ion-checkbox>
-              <ion-label class="input">Arterial/PAD</ion-label>
-              <ion-checkbox class="name" (click)="addwound('a')" [(ngModel)]=isWoundType2></ion-checkbox>
-              <ion-label class="input">Arterial/PAD</ion-label>
-              <ion-checkbox class="name" (click)="addwound('b/pad')" [(ngModel)]=isWoundType3></ion-checkbox>
-              <ion-label class="input">Arterial</ion-label>
-              <ion-checkbox class="name" (click)="addwound('c')" [(ngModel)]=isWoundType4></ion-checkbox>
-              <ion-label class="input">Arterial/PAD</ion-label>
-              <ion-checkbox class="name"  (click)="addwound('d')" [(ngModel)]=isWoundType5></ion-checkbox>
-              <ion-label class="input">Arterial/PAD</ion-label>
-              <ion-checkbox class="name" (click)="addwound('e')" [(ngModel)]=isWoundType6></ion-checkbox>
-              <ion-label class="input">Arterial/PAD</ion-label>
-              <ion-checkbox class="name"(click)="addwound('f/pad')" [(ngModel)]=isWoundType7></ion-checkbox>
-              <ion-label class="input">Arterial/PAD</ion-label>
-              <ion-checkbox class="name" (click)="addwound('e/pad')" [(ngModel)]=isWoundType8></ion-checkbox>
-              <ion-label class="input">Arterial/PAD</ion-label>
+              <span *ngFor="let checkboxValue of form;let i=index" (ngModelChange)="modelChanged()" class="width">
+                  <ion-checkbox class="name" (click)="addwound(checkboxValue)" [(ngModel)]="try[i]"></ion-checkbox>
+                <ion-label class="input">{{checkboxValue}}</ion-label>
+              </span>
+
         </div>
       </ion-row>
   <ion-row>
@@ -68,14 +45,14 @@
         </select></ion-col>
     </ion-row>
     <ion-row>
-        <ion-col size="3"><label class="label">Moisture yype</label></ion-col>
-        <ion-col size="9"><select class="option" name="moisture" [(ngModel)]="data.assessments[0].moisture_type">
-            <option *ngFor="let moisture of moistures" [value]="moisture">{{moisture}}</option>
+        <ion-col size="3"><label class="label">Moisture Type</label></ion-col>
+        <ion-col size="9"><select class="option" name="moisturetype" [(ngModel)]="data.assessments[0].moisture_type[0]">
+            <option *ngFor="let moisturetype of moistures" [value]="moisturetype">{{moisturetype}}</option>
         </select></ion-col>
     </ion-row>
     <ion-row>
         <ion-col size="3"><label class="label">Edges</label></ion-col>
-        <ion-col size="9"><select class="option" name="edge" [(ngModel)]="data.assessments[0].edges">
+        <ion-col size="9"><select class="option" name="edge" [(ngModel)]="data.assessments[0].edges[0]">
             <option *ngFor="let edge of edges" [value]="edge">{{edge}}</option>
         </select></ion-col>
     </ion-row>

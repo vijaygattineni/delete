@@ -20,8 +20,12 @@ export class RiskMonitorComponent implements OnInit, OnDestroy {
   getData: any;
   riskDataInProgress:boolean;
   noRiskData: boolean;
-  graphData: any;
+  graphData = [];
   linedata: any;
+  graphSigleObj = {
+    "risk_percentage": 10,
+    "created_at": 20
+  };
 
   constructor(private riskmonitorService: RiskMonitorService) { }
 
@@ -37,6 +41,43 @@ export class RiskMonitorComponent implements OnInit, OnDestroy {
 
     this.getRiskmonitorDetails(this.localStorageId.id);
 
+
+    
+  }
+
+  ngAfterViewInit() {
+    this.showGraph();
+  }
+
+  pickColor(risk: string) {
+    if (risk === 'very high risk') this.color = 'red';
+    else if (risk === 'At risk') this.color = 'orangered';
+    else if (risk === 'No risk') this.color = 'green'
+    else this.color = 'yellow';
+  }
+
+
+  getRiskmonitorDetails(id: string) {
+    this.riskmonitorService.getRiskmonitorDetails(id).subscribe((result) => {
+      this.riskDataInProgress = false;
+      this.riskData = result;
+      console.log('graph',this.riskData)
+      //this.graphSigleObj.created_at= result[0].created_at;
+      for(let i in result) {
+        this.graphSigleObj.risk_percentage = result[i].risk_percentage;
+        this.graphData.push(this.graphSigleObj);
+      }
+     // console.log("graphDataArray", this.graphData[0]);
+      if(this.riskData.length === 0){
+        this.noRiskData = true;
+      }
+      if(this.graphData.length === 0){
+        this.noRiskData = true;
+      }
+    });
+  }
+
+  showGraph(){
     this.options = {
       chart: {
         type: 'lineChart',
@@ -48,7 +89,7 @@ export class RiskMonitorComponent implements OnInit, OnDestroy {
           bottom: 40,
           left: 100
         },
-        x: function (d) { return d.time_stamp; },
+        x: function (d) { return d.created_at; },
         y: function (d) { return d.risk_percentage; },
         useInteractiveGuideline: true,
         xAxis: {
@@ -80,48 +121,12 @@ export class RiskMonitorComponent implements OnInit, OnDestroy {
         }
       }
     };
-
     this.data = [{
-      values: [{
-        "time_stamp": 10,
-        "risk_percentage": 20
-      }, {
-        "time_stamp": 12,
-        "risk_percentage": 40
-      }, {
-        "time_stamp": 14,
-        "risk_percentage": 60
-      }, {
-        "time_stamp": 16,
-        "risk_percentage": 80
-      }, {
-        "time_stamp": 18,
-        "risk_percentage": 50
-      }, {
-        "time_stamp": 20,
-        "risk_percentage": 30
-      }],
+      values: this.graphData,
       key: 'Risk',
       color: '#7777ff',
       area: true      //area - set to true if you want this line to turn into a filled area chart.
     }
     ];
-  }
-
-  pickColor(risk: string) {
-    if (risk === 'very high risk') this.color = 'red';
-    else if (risk === 'At risk') this.color = 'orangered';
-    else if (risk === 'No risk') this.color = 'green'
-    else this.color = 'yellow';
-  }
-  getRiskmonitorDetails(id: string) {
-    this.riskmonitorService.getRiskmonitorDetails(id).subscribe((result) => {
-      this.riskDataInProgress = false;
-      this.riskData = result;
-      console.log('graph',this.riskData)
-      if(this.riskData.length === 0){
-        this.noRiskData = true;
-      }
-    });
   }
 }

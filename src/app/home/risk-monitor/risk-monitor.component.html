@@ -43,6 +43,10 @@
     <div class="riskmonitortitle">Risk Monitor
       <div class="second_box">
         <div>
+<!--             <ion-row size="12" class="risk-loader">
+                <ion-spinner name="bubbles" class="loader" *ngIf="riskDataInProgress"></ion-spinner>
+                <span *ngIf="noRiskData" class="nodata">No Data</span>
+              </ionrow>-->
           <nvd3 [options]="options" [data]="data"></nvd3>
         </div>
       </div>

@@ -17,20 +17,20 @@
     .subtitle {
       font-size: 18px;
     }
+    .risk-loader{
+      border: 1px solid #aaafaf;
+      border-radius: 5px;
+      .loader{
+        margin-left:38%;
+      }
+      .nodata{
+        font-size:12px;
+        margin-left:38%;
+      }
+    }
     .second {
      // background-color: rgb(45, 48, 51);
       color: black;
-      .risk-loader{
-        border: 1px solid #aaafaf;
-        border-radius: 5px;
-        .loader{
-          margin-left:38%;
-        }
-        .nodata{
-          font-size:12px;
-          margin-left:38%;
-        }
-      }
       .greensquare {
         height: 9px;
         width: 9px;
@@ -65,7 +65,7 @@
       }
       .label {
         height: 14px;
-        width: 11%;
+        width: 85px;
         color:black;
         font-family: Roboto;
         font-size: 12px;

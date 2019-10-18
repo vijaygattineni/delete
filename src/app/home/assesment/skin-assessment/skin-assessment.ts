@@ -6,7 +6,7 @@ export interface skinAssessmentInt{
       redness: boolean;
       infection: boolean;
       odour: boolean;
-      pain: any;
+      pain: boolean;
       moisture_type: any;
       edges: any;
       measurements_length: number;

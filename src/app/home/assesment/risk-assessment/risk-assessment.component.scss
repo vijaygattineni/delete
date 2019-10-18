@@ -2,7 +2,7 @@
     padding: 2% 4% 2% 4%;
     font-size: 12px;
    // background-color:  rgb(29, 30, 31);
-    border:1px solid black;
+    border:1px solid #aaafaf;
   
     .label {
       min-width: 8vw;
@@ -17,12 +17,13 @@
   .text{
     font-size: 12px;
     margin-top: -8px;
+    color:#aaafaf;
   }
   .scale{
     margin-left:45%;
     .scalelabel{
       font-size: 12px;
-      margin-right:  10px;
+      margin-right: 10px;
     }
     .select{
       font-size: 12px;
@@ -36,7 +37,7 @@
     padding: 2% 4% 2% 4%;
     font-size: 12px;
     margin-bottom:2%;
-   border:1px solid black;
+   border:1px solid #aaafaf;
     .table {
       width: 100%;
       td {

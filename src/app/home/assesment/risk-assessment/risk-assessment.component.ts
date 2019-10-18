@@ -51,34 +51,31 @@ export class RiskAssessmentComponent implements OnInit {
         hip_or_knee_surgery: false,
       }
     };
-    this.getRiskAssessmentData('sensory');
-    this.getRiskAssessmentData('moisture');
-    this.getRiskAssessmentData('activity');
-    this.getRiskAssessmentData('mobility');
-    this.getRiskAssessmentData('nutrition');
-    this.getRiskAssessmentData('friction');
+    this.getRiskAssessmentData();
 
   }
-  getRiskAssessmentData(filter: string) {
-    this.riskassessmentService.riskAssessmentData(filter).subscribe((result) => {
-      if (filter === 'sensory' && result) {
-        this.sensory_perceptions.push(result);
-      }
-      else if (filter === 'moisture' && result) {
-        this.moistures.push(result);
-      }
-      else if (filter === 'activity' && result) {
-        this.activities.push(result);
-      }
-      else if (filter === 'mobility' && result) {
-        this.mobilitys.push(result);
-      }
-      else if (filter === 'nutrition' && result) {
-        this.nutritions.push(result);
-      }
-      else {
-        this.frictions.push(result);
-      }
+  getRiskAssessmentData() {
+    this.riskassessmentService.riskAssessmentData().subscribe((result) => {
+     for(let i in result) {
+        if (result[i].type === 'sensory' && result) {
+          this.sensory_perceptions.push(result[i]);
+        }
+        else if (result[i].type === 'moisture' && result) {
+          this.moistures.push(result[i]);
+        }
+        else if (result[i].type === 'activity' && result) {
+          this.activities.push(result[i]);
+        }
+        else if (result[i].type === 'mobility' && result) {
+          this.mobilitys.push(result[i]);
+        }
+        else if (result[i].type === 'nutrition' && result) {
+          this.nutritions.push(result[i]);
+        }
+        else {
+          this.frictions.push(result[i]);
+        }
+     }
     })
   }
 }

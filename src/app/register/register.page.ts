@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RegisterService } from './register.service';
-import { Key } from 'protractor';
 import { RegisterData } from './register';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { ToastService } from '../shared/toast.service';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +11,7 @@ import { ToastController } from '@ionic/angular';
 })
 export class RegisterPage implements OnInit {
   data: RegisterData;
-  constructor(public toastController: ToastController, private registerService: RegisterService, private router: Router, ) { }
+  constructor(public toast: ToastService, private registerService: RegisterService, private router: Router, ) { }
   sensory_perceptions = [];
   mobilitys = [];
   moistures = [];
@@ -28,23 +27,6 @@ export class RegisterPage implements OnInit {
 
   }
   checkboxData: any;
-
-  async validIDToast() {
-    const toast = await this.toastController.create({
-      message: 'Registered Successfully',
-      duration: 2000,
-      color: 'success'
-    });
-    toast.present();
-  }
-  async invalidIDToast() {
-    const toast = await this.toastController.create({
-      message: 'Enter the details Correctly',
-      duration: 4000,
-      color: 'danger'
-    });
-    toast.present();
-  }
   ngOnInit() {
     this.data = {
       patient_profile: {
@@ -94,11 +76,11 @@ export class RegisterPage implements OnInit {
 
     this.registerService.registerUsers(this.data).subscribe((result) => {
       this.allUser = result;
-      this.validIDToast();
+      this.toast.toastPopup('Registered successfully', 2000, 'success');
       localStorage.setItem('dataSource',JSON.stringify(this.allUser));
       this.router.navigate(['home']);
     }, (errorResponse) => {
-      this.invalidIDToast();
+      this.toast.toastPopup('Please enter the details correctly', 2000, 'danger');
     })
    // if(!this.allUser) this.invalidIDToast();
   };

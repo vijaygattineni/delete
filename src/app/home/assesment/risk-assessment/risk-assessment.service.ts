@@ -7,11 +7,11 @@ import { environment } from '../../../../environments/environment';
   providedIn: 'root'
 })
 export class RiskAssessmentService {
-  riskAssessmetApi = environment.prefix ='master-data?type=';
+  riskAssessmetApi = environment.prefix +'master-data';
   constructor(private httpClient: HttpClient) { }
 
-  public riskAssessmentData(filter) {
-    let filterApi = this.riskAssessmetApi + filter;
+  public riskAssessmentData() {
+    let filterApi = this.riskAssessmetApi;
     return this.httpClient.get(filterApi);
   }
 

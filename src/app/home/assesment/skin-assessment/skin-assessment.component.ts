@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SkinAssessmentService } from './skin-assessment.service';
 import { skinAssessmentInt } from './skin-assessment';
-import { ToastController } from '@ionic/angular';
+import { ToastService } from '../../../shared/toast.service';
 
 @Component({
   selector: 'app-skin-assessment',
@@ -11,51 +11,41 @@ import { ToastController } from '@ionic/angular';
 export class SkinAssessmentComponent implements OnInit {
 
   odours = ['Yes', 'No'];
-  pains = ['Moderate', 'More', 'Less'];
-  moistures = ['Purulent', 'non-purulent'];
-  edges = ['Purulent', 'non-purulent'];
-  form = ['Arterial', 'Arterial', 'Arterial', 'Arterial', 'Arterial', 'Arterial', 'Arterial',]
+  pains = ['Yes', 'No'];
+  moistures = [];
+  edges = [];
+  form = [];
+  try=[];
   data: skinAssessmentInt;
   wound: boolean;
   skinAssessmentData = [];
   wound_type = [];
-  isWoundType1 = false;
-  isWoundType2 = false;
-  isWoundType3 = false;
-  isWoundType4 = false;
-  isWoundType5 = false;
-  isWoundType6 = false;
-  isWoundType7 = false;
-  isWoundType8 = false;
+  woundTypeTemp = false;
 
-  constructor(public toastController: ToastController, private skinAssessmentService: SkinAssessmentService) { }
-  async validIDToast() {
-    const toast = await this.toastController.create({
-      message: 'Data Saved Successfully',
-      duration: 2000,
-      color: 'success'
-    });
-    toast.present();
-  }
+
+  constructor(public toast: ToastService, private skinAssessmentService: SkinAssessmentService) { }
+
   ngOnInit() {
     this.data = {
-      "patient": 12,
+      "patient": 0,
       "assessments": [{
         "wound": this.wound,
         "wound_type": this.wound_type,
         "redness": false,
         "infection": false,
         "odour": false,
-        "pain": 'normal',
-        "moisture_type": 'normal',
-        "edges": 'normal',
-        "measurements_length": 5,
-        "measurements_width": 5,
-        "measurements_depth": 5,
-        "wound_area": 1,
+        "pain": false,
+        "moisture_type":{},
+        "edges": {},
+        "measurements_length": 0,
+        "measurements_width": 0,
+        "measurements_depth": 0,
+        "wound_area": 0,
       }]
     }
-
+    this.getSkinAssessmentData('wound');
+    this.getSkinAssessmentData('moisture_type');
+    this.getSkinAssessmentData('edges');
   }
   private selected: any = 'Yes';
 
@@ -71,31 +61,22 @@ export class SkinAssessmentComponent implements OnInit {
   makeDataAsNull() {
     if (!this.wound) this.wound_type = [];
     this.data = {
-      "patient": 12,
+      "patient": 0,
       "assessments": [{
         "wound": this.wound,
         "wound_type": this.wound_type,
         "redness": false,
         "infection": false,
         "odour": false,
-        "pain": 'normal',
-        "moisture_type": 'normal',
-        "edges": 'normal',
-        "measurements_length": 5,
-        "measurements_width": 5,
-        "measurements_depth": 5,
-        "wound_area": 1,
+        "pain": false,
+        "moisture_type": {},
+        "edges": {},
+        "measurements_length": 0,
+        "measurements_width": 0,
+        "measurements_depth": 0,
+        "wound_area": 0,
       }]
     }
-    this.isWoundType1 = false;
-    this.isWoundType2 = false;
-    this.isWoundType3 = false;
-    this.isWoundType4 = false;
-    this.isWoundType5 = false;
-    this.isWoundType6 = false;
-    this.isWoundType7 = false;
-    this.isWoundType8 = false;
-    this.wound_type = [];
   }
 
   addAnotherWound() {
@@ -104,7 +85,9 @@ export class SkinAssessmentComponent implements OnInit {
     } else {
       this.skinAssessmentData[0].assessments.push(this.data.assessments[0]);
     }
+    this.woundTypeTemp = false;
     this.makeDataAsNull();
+    for(let i=0;i<this.try.length;i++) this.try[i] = false;
     console.log("finaldata", this.skinAssessmentData[0]);
   }
 
@@ -117,7 +100,7 @@ export class SkinAssessmentComponent implements OnInit {
     this.addAnotherWound();
     console.log("passing data", this.skinAssessmentData[0]);
     this.skinAssessmentService.postSkinAssessment(this.skinAssessmentData[0]).subscribe((result) => {
-    this.validIDToast();
+      this.toast.toastPopup('Data Saved successfully', 2000, 'success');
     });
     this.makeDataAsNull();
     this.skinAssessmentData = [];
@@ -125,5 +108,21 @@ export class SkinAssessmentComponent implements OnInit {
 
   addwound(value: string) {
     this.wound_type.push(value);
+  }
+  getSkinAssessmentData(filter: string) {
+    this.skinAssessmentService.riskAssessmentData(filter).subscribe((result) => {
+      if (filter === 'wound') {
+        for(let i in result) {
+        this.form.push(result[i].value);
+        this.try[i]=false;
+        }
+      }
+      else if (filter === 'moisture_type') {
+        for(let i in result) this.moistures.push(result[i].value);
+      }
+      else if(filter === 'edges'){
+        for(let i in result) this.edges.push(result[i].value);
+      }
+    })
   }
 }

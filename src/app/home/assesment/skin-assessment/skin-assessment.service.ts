@@ -7,6 +7,8 @@ import { environment } from '../../../../environments/environment';
 })
 export class SkinAssessmentService {
     skinAssessmentApi: string;
+    skinfieldsApi = environment.prefix + 'master-data?type=';
+
 
     constructor(private httpClient: HttpClient) { }
 
@@ -14,4 +16,8 @@ export class SkinAssessmentService {
         this.skinAssessmentApi = environment.prefix + 'skin-assessments';
         return this.httpClient.post(this.skinAssessmentApi, data);
     }
+    public riskAssessmentData(filter) {
+        let filterApi = this.skinfieldsApi + filter;
+        return this.httpClient.get(filterApi);
+      }
 }
