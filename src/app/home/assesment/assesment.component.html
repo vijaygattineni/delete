@@ -80,6 +80,8 @@
           <div class="time-stamp">
             {{selectedAssessmentData.created_date | date:'short'}}
           </div>
+          
+          <div style="overflow: auto;max-height: calc(100vh - 270px);">
           <table style="width:100%;margin: 25px;">
             <tr>
               <td>Sensory perception</td>
@@ -174,6 +176,8 @@
               <td>{{selectedAssessmentData.other_factors.hip_or_knee_surgery}}</td>
             </tr>
           </table>
+          </div>
+
         </div>
         <div *ngIf="selectedAssessmentType === 'skin'">
           <div class="assesment-header">
@@ -199,7 +203,8 @@
             </ion-col>
           </ion-row>
 
-          <table style="width:100%;border-bottom: solid 1px lightgray;"
+          <div style="overflow: auto;max-height: calc(100vh - 270px);">
+            <table style="width:100%;border-bottom: solid 1px lightgray;"
             *ngFor="let assesment of this.selectedAssessmentData.wounds">
             <tr>
               <td style="font-weight:400">Assessment No {{assesment.id}}</td>
@@ -244,6 +249,7 @@
               </td>
             </tr>
           </table>
+          </div>
         </div>
       </div>
 
