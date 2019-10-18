@@ -4,7 +4,7 @@
       <div class="second">
         <ion-grid>
           <ion-row class="subtitle">
-             <ion-col size="6">
+            <ion-col size="6">
               Risk Area
             </ion-col>
             <ion-col size="6">
@@ -12,19 +12,19 @@
             </ion-col>
           </ion-row>
           <ion-row size="12" class="risk-loader">
-          <ion-spinner name="bubbles" class="loader" *ngIf="riskDataInProgress"></ion-spinner>
-          <span *ngIf="noRiskData" class="nodata">No Data</span>
-        </ion-row>
+            <ion-spinner name="bubbles" class="loader" *ngIf="riskDataInProgress"></ion-spinner>
+            <span *ngIf="noRiskData" class="nodata">No Data</span>
+          </ion-row>
           <ion-row class="assessment_level" *ngFor="let data of riskData">
-              <span>{{pickColor(data.risk_name)}}</span>
-              <ion-col size="6">
-                <h6 [style.color]="color">{{data.risk_area}}</h6>
-                <p class="lefttext">{{data.risk_name}}</p>
-              </ion-col>
-              <ion-col size="6">
-                <p class="righttext">{{data.recommendations}}</p>
-              </ion-col>
-            </ion-row>
+            <span>{{pickColor(data.risk_name)}}</span>
+            <ion-col size="6">
+              <h6 [style.color]="color">{{data.risk_area}}</h6>
+              <p class="lefttext">{{data.risk_name}}</p>
+            </ion-col>
+            <ion-col size="6">
+              <p class="righttext">{{data.recommendations}}</p>
+            </ion-col>
+          </ion-row>
           <ion-row style="width:100%">
             <p class="greensquare"></p>
             <p class="label">No Risk</p>
@@ -43,7 +43,7 @@
     <div class="riskmonitortitle">Risk Monitor
       <div class="second_box">
         <div>
-<!--             <ion-row size="12" class="risk-loader">
+          <!--             <ion-row size="12" class="risk-loader">
                 <ion-spinner name="bubbles" class="loader" *ngIf="riskDataInProgress"></ion-spinner>
                 <span *ngIf="noRiskData" class="nodata">No Data</span>
               </ionrow>-->
